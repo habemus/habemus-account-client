@@ -68,12 +68,12 @@ function HAccountBrowserClient(options) {
    * The cached user
    * @private
    */
-  this._cachedUser = undefined;
+  this._cachedAccount = undefined;
 
   /**
-   * Make calls to `getCurrentUser` cached
+   * Make calls to `getCurrentAccount` cached
    */
-  this.getCurrentUser = cachePromiseFn(this.getCurrentUser.bind(this), {
+  this.getCurrentAccount = cachePromiseFn(this.getCurrentAccount.bind(this), {
     cacheKey: function cacheKey() {
       // constant cache key, at this method takes no arguments
       return 'constant';
@@ -136,7 +136,7 @@ HAccountBrowserClient.prototype.signUp = function (username, password, email, op
  * 
  * @return {Promise->userData}        
  */
-HAccountBrowserClient.prototype.getCurrentUser = function () {
+HAccountBrowserClient.prototype.getCurrentAccount = function () {
 
   return new Bluebird(function (resolve, reject) {
 
@@ -149,10 +149,10 @@ HAccountBrowserClient.prototype.getCurrentUser = function () {
     } else {
 
       // check if there is a cached version of the userData
-      if (this._cachedUser) {
+      if (this._cachedAccount) {
 
         // resolve immediately
-        resolve(this._cachedUser);
+        resolve(this._cachedAccount);
 
       } else {
         var tokenData = _decodeJWTPayload(token);
@@ -161,7 +161,7 @@ HAccountBrowserClient.prototype.getCurrentUser = function () {
         this.getAccount(token, username)
           .then(function (accountData) {
 
-            this._cachedUser = accountData;
+            this._cachedAccount = accountData;
             this._setAuthStatus(LOGGED_IN);
 
             resolve(accountData);
@@ -201,7 +201,7 @@ HAccountBrowserClient.prototype.logIn = function (username, password) {
       this._saveAuthToken(token);
 
       // decode the token and save the decoded data
-      // as the _cachedUser
+      // as the _cachedAccount
       var tokenData = _decodeJWTPayload(token);
 
       // DO NOT cache the tokenData as the user's data,
@@ -215,7 +215,7 @@ HAccountBrowserClient.prototype.logIn = function (username, password) {
     }.bind(this))
     .catch(function (err) {
 
-      delete this._cachedUser;
+      delete this._cachedAccount;
       this._setAuthStatus(LOGGED_OUT);
 
       return Bluebird.reject(err);
@@ -239,7 +239,7 @@ HAccountBrowserClient.prototype.logOut = function () {
     }
 
     this._destroyAuthToken();
-    delete this._cachedUser;
+    delete this._cachedAccount;
 
     this.revokeToken(token)
       .then(function () {
@@ -257,8 +257,8 @@ HAccountBrowserClient.prototype.logOut = function () {
  * Sets the cached data on the user
  * @param {Object} user
  */
-HAccountBrowserClient.prototype.setCachedUser = function (user) {
-  this._cachedUser = user;
+HAccountBrowserClient.prototype.setCachedAccount = function (user) {
+  this._cachedAccount = user;
 };
 
 //////////////////

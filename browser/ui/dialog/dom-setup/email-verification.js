@@ -13,13 +13,13 @@ module.exports = function (dialog, options) {
     var authToken = hAccountClient.getAuthToken();
 
     if (authToken) {
-      hAccountClient.getCurrentUser()
+      hAccountClient.getCurrentAccount()
         .then(function (user) {
           return hAccountClient.getAccount(authToken, user.username);
         })
         .then(function (account) {
           // update the cache
-          hAccountClient.setCachedUser(account);
+          hAccountClient.setCachedAccount(account);
 
           if (account.status.value === 'verified') {
             // success!
@@ -38,7 +38,7 @@ module.exports = function (dialog, options) {
 
     var authToken = hAccountClient.getAuthToken();
 
-    hAccountClient.getCurrentUser()
+    hAccountClient.getCurrentAccount()
       .then(function (user) {
         return hAccountClient.requestEmailVerification(authToken, user.username)
       })

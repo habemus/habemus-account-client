@@ -186,7 +186,7 @@ exports.revokeToken = function (token) {
         resolve();
       }.bind(this));
 
-    }.bind(this));
+  }.bind(this));
 
 };
 
@@ -276,4 +276,193 @@ exports.requestPasswordReset = function (email) {
 
   }.bind(this));
 
+};
+
+/**
+ * Updates the account ownerData
+ * 
+ * @param  {String} authToken
+ * @param  {String} username
+ * @param  {Object} ownerData
+ * @return {Bluebird -> Account}
+ */
+exports.updateAccountOwnerData = function (authToken, username, ownerData) {
+  if (!authToken) {
+    return Bluebird.reject(new errors.InvalidOption('authToken', 'required'));
+  }
+
+  if (!username) {
+    return Bluebird.reject(new errors.InvalidOption('username', 'required'));
+  }
+
+  if (!ownerData) {
+    return Bluebird.reject(new errors.InvalidOption('ownerData', 'required'));
+  }
+
+  return new Bluebird(function (resolve, reject) {
+
+    superagent
+      .put(this.serverURI + '/account/' + username + '/owner')
+      .set({
+        'Authorization': 'Bearer ' + authToken
+      })
+      .send(ownerData)
+      .end(function (err, res) {
+        if (err) {
+          if (res && res.statusCode === 401) {
+
+            // invalid token
+            reject(new errors.InvalidToken(authToken));
+
+          } else if (res && res.statusCode === 403) {
+
+            // unauthorized
+            reject(new errors.Unauthorized());
+
+          } else if (res && res.statusCode === 404) {
+
+            // not found
+            reject(new errors.UserNotFound());
+
+          } else {
+            // unknown error
+            reject(err);
+          }
+
+          return;
+        }
+
+        resolve(res.body.data);
+
+      }.bind(this));
+
+  }.bind(this));
+};
+
+/**
+ * Updates the account preferences
+ * 
+ * @param  {String} authToken
+ * @param  {String} username
+ * @param  {Object} preferences
+ * @return {Bluebird -> Account}
+ */
+exports.updateAccountPreferences = function (authToken, username, preferences) {
+
+  if (!authToken) {
+    return Bluebird.reject(new errors.InvalidOption('authToken', 'required'));
+  }
+
+  if (!username) {
+    return Bluebird.reject(new errors.InvalidOption('username', 'required'));
+  }
+
+  if (!preferences) {
+    return Bluebird.reject(new errors.InvalidOption('preferences', 'required'));
+  }
+
+  return new Bluebird(function (resolve, reject) {
+
+    superagent
+      .put(this.serverURI + '/account/' + username + '/preferences')
+      .set({
+        'Authorization': 'Bearer ' + authToken
+      })
+      .send(preferences)
+      .end(function (err, res) {
+        if (err) {
+          if (res && res.statusCode === 401) {
+
+            // invalid token
+            reject(new errors.InvalidToken(authToken));
+
+          } else if (res && res.statusCode === 403) {
+
+            // unauthorized
+            reject(new errors.Unauthorized());
+
+          } else if (res && res.statusCode === 404) {
+
+            // not found
+            reject(new errors.UserNotFound());
+
+          } else {
+            // unknown error
+            reject(err);
+          }
+
+          return;
+        }
+
+        resolve(res.body.data);
+
+      }.bind(this));
+
+  }.bind(this));
+};
+
+/**
+ * Updates the account's application configurations
+ * 
+ * @param  {String} authToken
+ * @param  {String} username
+ * @param  {String} applicationId
+ * @param  {Object} config
+ * @return {Bluebird -> Account}
+ */
+exports.updateApplicationConfig = function (authToken, username, applicationId, config) {
+  if (!authToken) {
+    return Bluebird.reject(new errors.InvalidOption('authToken', 'required'));
+  }
+
+  if (!username) {
+    return Bluebird.reject(new errors.InvalidOption('username', 'required'));
+  }
+
+  if (!applicationId) {
+    return Bluebird.reject(new errors.InvalidOption('applicationId', 'required'));
+  }
+
+  if (!config) {
+    return Bluebird.reject(new errors.InvalidOption('config', 'required'));
+  }
+
+  return new Bluebird(function (resolve, reject) {
+
+    superagent
+      .put(this.serverURI + '/account/' + username + '/config/' + applicationId)
+      .set({
+        'Authorization': 'Bearer ' + authToken
+      })
+      .send(config)
+      .end(function (err, res) {
+        if (err) {
+          if (res && res.statusCode === 401) {
+
+            // invalid token
+            reject(new errors.InvalidToken(authToken));
+
+          } else if (res && res.statusCode === 403) {
+
+            // unauthorized
+            reject(new errors.Unauthorized());
+
+          } else if (res && res.statusCode === 404) {
+
+            // not found
+            reject(new errors.UserNotFound());
+
+          } else {
+            // unknown error
+            reject(err);
+          }
+
+          return;
+        }
+
+        resolve(res.body.data);
+
+      }.bind(this));
+
+  }.bind(this));
 };

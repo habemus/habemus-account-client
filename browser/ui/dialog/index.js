@@ -286,15 +286,15 @@ HAccountDialog.prototype.close = function () {
  * @param {Object} options
  *        - ensureEmailVerified: Boolean (false)
  * 
- * @return {UserData}
+ * @return {AccountData}
  */
-HAccountDialog.prototype.ensureUser = function (options) {
+HAccountDialog.prototype.ensureAccount = function (options) {
 
   options = options || {};
 
   var self = this;
 
-  return self.hAccountClient.getCurrentUser()
+  return self.hAccountClient.getCurrentAccount()
     .then(function (user) {
       return user;
     })
@@ -305,17 +305,17 @@ HAccountDialog.prototype.ensureUser = function (options) {
         return self.logIn()
           .then(function () {
             // the method MUST return the current user
-            return self.hAccountClient.getCurrentUser();
+            return self.hAccountClient.getCurrentAccount();
           })
 
-      } else if (err.name === 'UserNotFound') {
+      } else if (err.name === 'AccountNotFound') {
         // user logged in, but for some reason the
         // account does not exist anymore
 
         return self.signUp()
           .then(function () {
             // the method MUST return the current user
-            return self.hAccountClient.getCurrentUser();
+            return self.hAccountClient.getCurrentAccount();
           });
 
       } else {
@@ -360,7 +360,7 @@ HAccountDialog.prototype.ensureUser = function (options) {
 // AuthClient proxy methods
 const AUTH_PROXY_METHODS = [
   'getAuthToken',
-  'getCurrentUser',
+  'getCurrentAccount',
   'logOut',
   'on',
   'emit',
