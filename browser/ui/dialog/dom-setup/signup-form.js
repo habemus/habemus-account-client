@@ -4,6 +4,7 @@ const aux = require('../../../auxiliary');
 module.exports = function (dialog, options) {
   // elements
   var signupForm = dialog.element.querySelector('#h-account-signup');
+  var signupFullName = signupForm.querySelector('[name="full-name"]');
   var signupUsername = signupForm.querySelector('[name="username"]');
   var signupEmail    = signupForm.querySelector('[name="email"]');
   var signupPassword = signupForm.querySelector('[name="password"]');
@@ -17,6 +18,23 @@ module.exports = function (dialog, options) {
   signupForm.addEventListener('submit', function (e) {
     e.preventDefault();
     e.stopPropagation();
+
+    var fullName = signupFullName.value;
+    var nameSplit = fullName.split(/\s+/);
+
+    var givenName = nameSplit[0];
+    var familyName;
+    var additionalName;
+
+    if (nameSplit.length > 1) {
+      familyName = nameSplit[nameSplit.length - 1];
+    }
+
+    if (nameSplit.length > 2) {
+      nameSplit.shift();
+      nameSplit.pop();
+      additionalName = nameSplit.join(' ');
+    }
 
     var username = signupUsername.value;
     var email    = signupEmail.value;
@@ -35,34 +53,44 @@ module.exports = function (dialog, options) {
     // set the dialog to signup-loading mode
     dialog.model.set('state', 'signup-loading');
 
-    dialog.hAccountClient
-      .signUp(username, password, email, {
-        // signup and immediately logIn after signUp
-        immediatelyLogIn: true,
-      })
-      .then(function (user) {
+    dialog.hAccountClient.signUp({
+      ownerData: {
+        givenName: givenName,
+        familyName: familyName,
+        additionalName: additionalName,
+      },
 
-        dialog.model.set('state', 'signup-success');
+      username: username,
+      email: email,
+      password: password,
+    }, {
+      // signup and immediately logIn after signUp
+      immediatelyLogIn: true,
+    })
+    .then(function (user) {
 
-        // resolve the promise
-        dialog.resolve(user);
+      dialog.model.set('state', 'signup-success');
 
-      }, function (err) {
+      // resolve the promise
+      dialog.resolve(user);
 
-        dialog.model.set('state', 'signup-error');
+    }, function (err) {
 
-        if (err.name === 'UsernameTaken') {
+      dialog.model.set('state', 'signup-error');
 
-          signupErrorMessage.innerHTML = 'UsernameTaken';
+      if (err.name === 'UsernameTaken') {
 
-        } else if (err.name) {
-          
-          signupErrorMessage.innerHTML = 'EmailTaken';
+        signupErrorMessage.innerHTML = 'UsernameTaken';
 
-        } else {
-          signupErrorMessage.innerHTML = 'Unknown sign up error';
-        }
-      });
+      } else if (err.name === 'EmailTaken') {
+        
+        signupErrorMessage.innerHTML = 'EmailTaken';
+
+      } else {
+        signupErrorMessage.innerHTML = 'Unknown sign up error';
+        console.warn(err);
+      }
+    });
 
   });
 };

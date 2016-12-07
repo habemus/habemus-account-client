@@ -88,9 +88,12 @@ gulp.task('serve:client', function() {
 gulp.task('watch', function () {
 
   var clientFiles = [
-    'client/**/*.js',
-    'client/**/*.html',
-    'client/**/*.css',
+    'browser/**/*.js',
+    'browser/**/*.html',
+    'browser/**/*.css',
+    'methods/**/*.js',
+    'index.js',
+    'private.js',
   ];
 
   gulp.watch(clientFiles, ['javascript']);

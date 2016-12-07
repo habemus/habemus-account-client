@@ -30,6 +30,10 @@ exports.createAccount = function (accountData) {
     return Bluebird.reject(new errors.InvalidOption('password', 'required'));
   }
 
+  if (!accountData.ownerData || !accountData.ownerData.givenName) {
+    return Bluebird.reject(new errors.InvalidOption('ownerData.givenName', 'required'));
+  }
+
   return new Bluebird(function (resolve, reject) {
 
     superagent

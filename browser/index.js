@@ -101,31 +101,33 @@ HAccountBrowserClient.prototype.getAuthToken = function () {
 };
 /**
  * Creates a new user account.
- * @param  {String} password   
- * @param  {String} password
- * @param  {String} email
- * @param  {Object} options
- *         - immediatelyLogIn
+ * @param {Object} accountData
+ *        - username*
+ *        - email*
+ *        - password*
+ *        - givenName*
+ *        - familyName
+ *        - additionalName
+ * @param {Object} options
+ *        - immediatelyLogIn
  * @return {Promise->userData}         
  */
-HAccountBrowserClient.prototype.signUp = function (username, password, email, options) {
+HAccountBrowserClient.prototype.signUp = function (accountData, options) {
   options = options || {};
 
-  return this.createAccount({
-    username: username,
-    email: email,
-    password: password,
-  })
-  .then(function (accountData) {
+  var username = accountData.username;
+  var password = accountData.password;
+
+  return this.createAccount(accountData).then(function (createdAccountData) {
 
     if (options.immediatelyLogIn) {
       return this.logIn(username, password)
         .then(function () {
           // ensure signup function returns the accountData
-          return accountData;
+          return createdAccountData;
         });
     } else {
-      return accountData;
+      return createdAccountData;
     }
 
   }.bind(this));

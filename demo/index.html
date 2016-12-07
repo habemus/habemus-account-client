@@ -6,7 +6,7 @@
 
   <button onclick="logIn()">log in</button>
   <button onclick="signUp()">sign up</button>
-  <button onclick="ensureUser()">ensure user</button>
+  <button onclick="ensureAccount()">ensure user</button>
   <button onclick="ensureVerifiedUser()">ensure verified user</button>
   <button onclick="logOut()">log out</button>
   
@@ -62,18 +62,18 @@
         });
     }
 
-    function ensureUser() {
-      accountDialog.ensureUser()
+    function ensureAccount() {
+      accountDialog.ensureAccount()
         .then(function (user) {
-          console.log('ensureUser success', user);
+          console.log('ensureAccount success', user);
         })
         .catch(function (err) {
-          console.warn('ensureUser error', err.stack);
+          console.warn('ensureAccount error', err.stack);
         })
     }
 
     function ensureVerifiedUser() {
-      accountDialog.ensureUser({ ensureEmailVerified: true })
+      accountDialog.ensureAccount({ ensureEmailVerified: true })
         .then(function (user) {
           console.log('ensureVerifiedUser success', user);
         })
