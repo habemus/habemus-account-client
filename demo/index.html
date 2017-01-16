@@ -33,7 +33,25 @@
   <script src="h-account-dialog.js"></script>
   <script>
     var accountDialog = new HAccountDialog({
-      serverURI: 'http://localhost:4000/public',
+      // serverURI: 'http://localhost:4000/public',
+      serverURI: 'https://api.habemus.io/account/v2',
+      t: function (key) {
+
+        return ({
+          logIn: 'log in',
+          signUp: 'sign up',
+          usernameOrEmail: 'username or email',
+          password: 'password',
+          loginError: 'login error',
+          forgotPassword: 'forgot your password?',
+          fullName: 'full name',
+          username: 'username',
+          email: 'e-mail',
+          confirmYourPassword: 'confirm your password',
+          signupError: 'sign up error',
+        })[key];
+
+      }
     });
 
     accountDialog.on('auth-status-change', function (status) {

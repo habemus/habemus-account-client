@@ -71,6 +71,14 @@ function HAccountDialog(options) {
   this.hAccountClient = options.hAccountClient || new HAccountClient(options);
 
   /**
+   * Translation function
+   */
+  this.t = options.t || function (key) {
+    console.warn('no translation function provided');
+    return key;
+  };
+
+  /**
    * Data store for the modal model
    * @type {DataObj}
    */

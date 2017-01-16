@@ -7,10 +7,16 @@
   <section
     data-state="login login-error signup signup-error"
     id="h-account-action-selector">
-    <button data-state="login login-error" data-navigate-to="login">
+    <button
+      data-state="login login-error"
+      data-navigate-to="login"
+      data-translate="logIn">
       Log in
     </button>
-    <button data-state="signup signup-error" data-navigate-to="signup">
+    <button
+      data-state="signup signup-error"
+      data-navigate-to="signup"
+      data-translate="signUp">
       Sign up
     </button>
   </section>
@@ -20,7 +26,7 @@
   <section data-state="login login-error">
     <form id="h-account-login">
       <label>
-        <span>username or e-mail</span>
+        <span data-translate="usernameOrEmail">username or e-mail</span>
         <input
           type="text"
           name="username"
@@ -30,7 +36,7 @@
           autofocus>
       </label>
       <label>
-        <span>password</span>
+        <span data-translate="password">password</span>
         <input
           type="password"
           name="password"
@@ -39,12 +45,21 @@
           required>
       </label>
 
-      <label class="h-account-error-message" data-state="login-error">login error</label>
+      <label
+        class="h-account-error-message"
+        data-state="login-error"
+        data-translate="loginError">login error</label>
 
-      <button type="submit">log in</button>
+      <button
+        type="submit"
+        data-translate="logIn">log in</button>
     </form>
 
-    <button data-navigate-to="password-reset">forgot your password?</button>
+    <button
+      data-navigate-to="password-reset"
+      data-translate="forgotPassword">
+      forgot your password?
+    </button>
   </section>
   <!-- ^ login ^ -->
 
@@ -52,7 +67,7 @@
   <section data-state="signup signup-error">
     <form id="h-account-signup">
       <label>
-        <span>full name</span>
+        <span data-translate="fullName">full name</span>
         <input
           type="text"
           name="full-name"
@@ -60,7 +75,7 @@
           required
           autofocus>
       </label>
-      <label>
+      <label data-translate="username">
         <span>username</span>
         <input
           type="text"
@@ -71,7 +86,7 @@
           autofocus>
       </label>
       <label>
-        <span>e-mail</span>
+        <span data-translate="email">e-mail</span>
         <input
           type="email"
           name="email"
@@ -81,7 +96,7 @@
           autofocus>
       </label>
       <label>
-        <span>password</span>
+        <span data-translate="password">password</span>
         <input
           type="password"
           name="password"
@@ -91,7 +106,7 @@
           minlength="6">
       </label>
       <label>
-        <span>confirm your password</span>
+        <span data-translate="confirmYourPassword">confirm your password</span>
         <input
           type="password"
           name="password-confirm"
@@ -101,9 +116,12 @@
           minlength="6">
       </label>
 
-      <label class="h-account-error-message" data-state="signup-error">signup error</label>
+      <label
+        class="h-account-error-message"
+        data-state="signup-error"
+        data-translate="signupError">signup error</label>
 
-      <button type="submit">sign up</button>
+      <button type="submit" data-translate="signUp">sign up</button>
 
     </form>
   </section>

@@ -7,6 +7,7 @@ const setupSignupForm = require('./signup-form');
 const closeButtons           = require('./close-buttons');
 const setupEmailVerification = require('./email-verification');
 const setupPasswordReset     = require('./password-reset');
+const setupLanguage          = require('./language');
 
 var domSetup = function (dialog, options) {
   setupNavigation(dialog, options);
@@ -15,6 +16,7 @@ var domSetup = function (dialog, options) {
   closeButtons(dialog, options);
   setupEmailVerification(dialog, options);
   setupPasswordReset(dialog, options);
+  setupLanguage(dialog, options);
 };
 
 domSetup.setupNavigation = setupNavigation;
