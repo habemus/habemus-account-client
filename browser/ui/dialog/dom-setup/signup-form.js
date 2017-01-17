@@ -9,12 +9,32 @@ module.exports = function (dialog, options) {
   var signupEmail    = signupForm.querySelector('[name="email"]');
   var signupPassword = signupForm.querySelector('[name="password"]');
   var signupPasswordConfirm = signupForm.querySelector('[name="password-confirm"]');
-
+  var signupReferrerWrapper = signupForm.querySelector('#know-habemus-wrapper');
+  var signupReferrerOtherWrapper = signupForm.querySelector('#know-habemus-other-wrapper');
+  var signupReferrerOther = signupForm.querySelector('[name="know-habemus-other"]');
   var signupSuccess = dialog.element.querySelector('#h-account-signup [data-state="signup-success"]');
   var signupErrorMessage   = dialog.element.querySelector('#h-account-signup [data-state="signup-error"]');
+  var signupAgreeToTermsOfService = signupForm.querySelector('[name="agree-terms-of-service"]');
 
   var _user;
+  
+  signupReferrerWrapper.addEventListener('change', function (e) {
+    
+    var target = e.target;
+    if (target.getAttribute('name') === 'know-habemus') {
+      if (target.getAttribute('value') === 'other') {
+        signupReferrerOtherWrapper.removeAttribute('hidden');
+        signupReferrerOther.setAttribute('required', true);
+      } else {
+        signupReferrerOtherWrapper.setAttribute('hidden', true);
+        signupReferrerOther.removeAttribute('required');
+      }
+    }
+  });
 
+  /**
+   * Form submit
+   */
   signupForm.addEventListener('submit', function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -40,6 +60,7 @@ module.exports = function (dialog, options) {
     var email    = signupEmail.value;
     var password = signupPassword.value;
     var passwordConfirm = signupPasswordConfirm.value;
+    var referrer = signupReferrerWrapper.querySelector('input[type="radio"]:checked').value;
 
     if (password !== passwordConfirm) {
       dialog.model.set('state', 'signup-error');
@@ -48,6 +69,17 @@ module.exports = function (dialog, options) {
 
       aux.focusAndSelectAll(signupPasswordConfirm);
       return;
+    }
+    
+    if (referrer === 'other') {
+      referrer = {
+        source: 'other',
+        detail: signupReferrerOther.value,
+      };
+    } else {
+      referrer = {
+        source: referrer,
+      };
     }
 
     // set the dialog to signup-loading mode
@@ -63,6 +95,14 @@ module.exports = function (dialog, options) {
       username: username,
       email: email,
       password: password,
+      
+      referrer: referrer,
+      
+      legal: {
+        termsOfService: {
+          agreed: signupAgreeToTermsOfService.value ? true : false,
+        }
+      },
     }, {
       // signup and immediately logIn after signUp
       immediatelyLogIn: true,
