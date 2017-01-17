@@ -1,27 +1,134 @@
-@keyframes fadeIn {
-  to { background: rgba(0,0,0,0.9); }
-}
+/*
+Colors reference:
+
+@habemus-green-dark: #0adda6;
+@habemus-green-light: #3eeeb7;
+
+@habemus-off-white: #f5f5f5;
+@habemus-gray-light: #cecece;
+@habemus-gray-medium: #a3a3a3;
+@habemus-gray-dark: #6d6d6d;
+@habemus-dark: #3c3c3c;
+
+@habemus-error: #E54A4A;
+*/
 
 #h-account-dialog {
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
 
-  padding: 30px 30px 30px 30px;
-
+  /*padding: 50px; media query */
   border: none;
+  width: 80%;
+  margin: 0 auto;
+  min-width: 280px;
+  max-width: 480px;
+
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow: auto;
+
+  /* styles default from  Polyfill - to be subcribed */
+  /*top: 50%;
+  transform: translate(0, -50%); MEDIA*/
+}
+
+#h-account-dialog *[hidden] {
+  display: none !important;
+}
+
+#h-account-dialog h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+#h-account-dialog p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+#h-account-dialog + .backdrop,
+#h-account-dialog::backdrop {
+  background-color: rgba(0,0,0,0.6);
+}
+
+#h-account-dialog #logo-habemus {
+  display: block;
+  width: 94px;
+  margin-bottom: 24px;
 }
 
 #h-account-dialog button {
-  outline: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  padding: 0 24px;
+  line-height: 50px;
+  background-color: #cecece; /* @habemus-gray-light */
+  color: #3c3c3c; /* @habemus-dark; */
+  text-align: center;
+  display: block;
+  /*margin: 0 auto;*/
+  cursor: pointer;
+  transition: all 0.3s ease;
   border: none;
+}
 
-  padding: 10px 20px 10px 20px;
+#h-account-dialog button:hover {
+  background-color: #d6d6d6;
+}
+
+#h-account-dialog button.primary {
+  background-color: #0adda6; /* @habemus-green-dark; */
+  color: #3c3c3c; /* @habemus-dark; */
+}
+
+#h-account-dialog button.primary:hover {
+  background-color: #3eeeb7; /* @habemus-green-light; */
+  color: #3c3c3c; /* @habemus-dark; */
+}
+
+#h-account-dialog .button-container {
+  margin-bottom: -10px;
+}
+
+#h-account-dialog .button-container button {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#h-account-dialog .button-container button:last-child {
+  margin-right: 0;
 }
 
 #h-account-dialog > button.dialog-close {
   position: absolute;
 
-  padding: 2px 2px;
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="#cecece" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="#cecece" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
+  /*height: 50px;
+  width: 50px; MEDIA */
+  padding: 0;
 
+  top: 2px;
+  right: 2px;
+}
+
+#h-account-dialog > button.dialog-close:hover {
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="#6D6D6D" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="#6D6D6D" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
+}
+
+#h-account-dialog button.dialog-back {
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="MATERIAL"><g><g><polyline fill="none" stroke="#6D6D6D" stroke-miterlimit="10" points="10.315,2.602 0.96,12.14 10.315,21.678 "/></g><line fill="none" stroke="#6D6D6D" stroke-miterlimit="10" x1="0.96" y1="12.141" x2="23.478" y2="12.141"/></g></g></svg>') no-repeat 0 50%;
+  /*height: 50px;
+  width: 50px; MEDIA */
+  padding: 0 0 0 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
   top: 0px;
   right: 0px;
 }
@@ -29,15 +136,15 @@
 /**
  * Error messages
  */
-.h-account-error-message {
-  color: red;
-  opacity: 0;
+#h-account-dialog .h-account-error-message {
+  color: #E54A4A;
+  display: none;
 
   font-size: 12px;
 }
 
-.h-account-error-message.active {
-  opacity: 1;
+#h-account-dialog .h-account-error-message.active {
+  display: block;
 }
 
 /**
@@ -54,13 +161,35 @@
 /**
  * Action selector
  */
-#h-account-action-selector button {
 
+#h-account-action-selector button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  padding: 0;
+  line-height: 1.5;
+  background-color: transparent;
+  color: #a3a3a3; /* @habemus-gray-medium: */
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  border-bottom: 2px solid transparent;
+  display: inline-block;
+}
+
+#h-account-action-selector button:hover {
+  color: #6d6d6d; /* @habemus-gray-dark; */
+  background: transparent;
 }
 
 #h-account-action-selector button.active {
-  background-color: green;
-  color: white;
+  color: #000000;
+  border-bottom: 2px solid #3eeeb7;
+}
+
+#h-account-action-selector span {
+  display: inline-block;
+  padding: 0 6px;
 }
 
 /**
@@ -70,7 +199,7 @@
   display: flex;
   flex-direction: column;
 
-  margin-top: 20px;
+  margin-top: 24px;
   margin-bottom: 0;
 }
 
@@ -78,21 +207,169 @@
   display: block;
 }
 
-#h-account-dialog form label > span {
+#h-account-dialog form label {
+  margin-bottom: 24px;
+}
+
+#h-account-dialog form label > span,
+#h-account-dialog form .how-know-habemus label:first-child span{
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#h-account-dialog form .how-know-habemus label{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 8px 0;
+}
+
+#h-account-dialog form .how-know-habemus label span{
   font-size: 12px;
+}
+
+#h-account-dialog form .how-know-habemus label [type="radio"] {
+  margin: 3px 6px 3px 3px;
 }
 
 #h-account-dialog form input[type="text"],
 #h-account-dialog form input[type="email"],
-#h-account-dialog form input[type="password"] {
-  margin-top: 10px;
-  margin-bottom: 10px;
-
+#h-account-dialog form input[type="password"],
+#h-account-dialog form textarea {
+  height: 36px;
   font-size: 12px;
-  border: none;
-  outline: none;
+  padding: 0 8px;
+  margin: 4px 0;
+  border: 1px solid @habemus-gray-dark;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+#h-account-dialog form label [type="checkbox"] {
+  margin: 3px 6px 3px 3px;
 }
 
 #h-account-dialog form button[type="submit"] {
-  margin-top: 10px;
+  margin-top: 6px;
+}
+
+#h-account-dialog form label#terms{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#h-account-dialog form label#terms a{
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  color: #3eeeb7; /* @habemus-green-light; */
+  margin-left: 4px;
+}
+
+#h-account-dialog form label#terms a:hover{
+  color: #0adda6; /* @habemus-green-dark; */
+}
+
+#h-account-dialog button.button-bottom {
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  color: #a6a6a6;
+  background-color: transparent;
+  padding: 0;
+  line-height: 1.5;
+  margin-top: 18px;
+}
+
+[data-state="password-reset-loading"],
+[data-state="login-loading"],
+[data-state="signup-loading"],
+[data-state="password-reset-loading"] {
+  display: none;
+}
+
+[data-state="password-reset-loading"].active,
+[data-state="login-loading"].active,
+[data-state="signup-loading"].active,
+[data-state="password-reset-loading"].active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+[data-state="password-reset-loading"] .spinner,
+[data-state="login-loading"] .spinner,
+[data-state="signup-loading"] .spinner,
+[data-state="password-reset-loading"] .spinner {
+  width: 60px;
+  height: 60px;
+  background-color: #3eeeb7; /* @habemus-green-light */
+
+  margin: 100px auto;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+/*
+ * animation of loading states
+ */
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+  transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  } 50% {
+  transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  } 100% {
+  transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+@keyframes loading-animation {
+  0%, 100% {
+    height: 2px;
+    width: 2px;
+  }
+  50% {
+    height: 50px;
+    width: 50px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* WIDTH FROM 0 TO 400 */
+@media screen and (max-width: 400px) {
+  #h-account-dialog {
+    padding: 30px;
+
+    top: 5%;
+    transform: translate(0, 0);
+  }
+
+  #h-account-dialog > button.dialog-close {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+/* WIDTH FROM 401 */
+@media screen and (min-width: 401px) {
+  #h-account-dialog {
+    padding: 50px;
+
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  #h-account-dialog > button.dialog-close {
+    height: 50px;
+    width: 50px;
+  }
 }

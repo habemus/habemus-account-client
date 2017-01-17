@@ -9,7 +9,7 @@
   <button onclick="ensureAccount()">ensure user</button>
   <button onclick="ensureVerifiedUser()">ensure verified user</button>
   <button onclick="logOut()">log out</button>
-  
+
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel pellentesque tortor. Sed bibendum ullamcorper nulla a blandit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce commodo justo nec metus lobortis, rutrum cursus neque rutrum. Aliquam quis quam id urna egestas molestie sit amet a purus. Nam auctor erat metus, quis ornare metus fringilla non. Nam diam quam, hendrerit commodo libero ut, lacinia aliquam leo. Nulla a nisl efficitur, bibendum arcu id, bibendum leo. Mauris eget metus imperdiet, luctus erat eget, sodales augue. Etiam porta ullamcorper egestas.
   </p>
@@ -40,15 +40,34 @@
         return ({
           logIn: 'log in',
           signUp: 'sign up',
+          logOut: 'log out',
           usernameOrEmail: 'username or email',
           password: 'password',
+          confirmYourPassword: 'confirm your password',
           loginError: 'login error',
-          forgotPassword: 'forgot your password?',
+          emailVerificationTitle: 'Verifique seu e-mail',
+          emailVerificationText: 'Sua conta foi criada com sucesso.<br> Para garantir sua segurança, enviamos um e-mail com os próximos passos da verificação.',
+          forgotPassword: 'forgot my password',
+          forgotPasswordTitle: 'Forgot my password',
+          forgotPasswordText: 'We\'ll send you an e-mail to reset your password',
+          PasswordResetSentTitle: 'Password reset request created with success.',
+          PasswordResetSentText: 'You will be receiving shortly an e-mail with further instructions.',
+          passwordResetError: 'Something went wrong with password reset. Please go back and try again',
           fullName: 'full name',
           username: 'username',
           email: 'e-mail',
-          confirmYourPassword: 'confirm your password',
+          sendEmail: 'send e-mail',
+          howKnowHabemus: 'How did you get to know habemus?',
+          workshop: 'During a workshop',
+          facebook: 'Facebook',
+          search: 'Search engine',
+          indication: 'Someone told me',
+          other: 'Others',
+          specifyOther: 'Please specify',
+          readAndAgree: 'I read and agree with',
+          useTerms: 'terms of use',
           signupError: 'sign up error',
+          back: 'back',
         })[key];
 
       }

@@ -108,7 +108,17 @@ function HAccountDialog(options) {
       var isActive = elStates.indexOf(currentState) !== -1;
 
       el.classList.toggle(ACTIVE_CLASS, isActive);
+
+      // check for data-show-after elements and set their respective timeouts
+      var showAfterEls = _toArray(el.querySelectorAll('[data-show-after]')).forEach(function (showAfterEl) {
+        var delay = parseInt(showAfterEl.getAttribute('data-show-after'), 10);
+        showAfterEl.setAttribute('hidden', true);
+        setTimeout(function () {
+          showAfterEl.removeAttribute('hidden');
+        }, delay);
+      });
     });
+
   }.bind(this));
 
   // whether to enable cancel
@@ -293,7 +303,7 @@ HAccountDialog.prototype.close = function () {
  *
  * @param {Object} options
  *        - ensureEmailVerified: Boolean (false)
- * 
+ *
  * @return {AccountData}
  */
 HAccountDialog.prototype.ensureAccount = function (options) {
@@ -309,7 +319,7 @@ HAccountDialog.prototype.ensureAccount = function (options) {
     .catch(function (err) {
       if (err.name === 'NotLoggedIn') {
         // user not logged in
-        
+
         return self.logIn()
           .then(function () {
             // the method MUST return the current user
@@ -348,12 +358,12 @@ HAccountDialog.prototype.ensureAccount = function (options) {
           case 'cancelled':
             return Bluebird.reject(new errors.AccountCancelled());
             break;
-          default: 
+          default:
             // by default assume the account is at cancelled status
             console.warn('unsupported account.status.value', account.status.value);
             break;
         }
-        
+
       } else {
         return account;
       }
