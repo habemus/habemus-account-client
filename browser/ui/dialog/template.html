@@ -1,6 +1,6 @@
 <dialog id="h-account-dialog">
 
-  <button class="dialog-close" data-action="cancel"></button>
+  <button class="dialog-close" data-close-action="cancel"></button>
 
   <!--  logo habemus -->
   <svg id="logo-habemus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="152px"
@@ -157,13 +157,14 @@
           required
           minlength="6">
       </label>
-      <div class="how-know-habemus">
+      <div id="know-habemus-wrapper" class="how-know-habemus">
         <label>
           <span data-translate="howKnowHabemus">Como conheceu a habemus?</span>
         </label>
         <label>
           <input
             type="radio"
+            required
             name="know-habemus"
             value="workshop">
           <span data-translate="workshop">Participei de oficina</span>
@@ -171,6 +172,7 @@
         <label>
           <input
             type="radio"
+            required
             name="know-habemus"
             value="facebook">
           <span data-translate="facebook">Facebook</span>
@@ -178,6 +180,7 @@
         <label>
           <input
             type="radio"
+            required
             name="know-habemus"
             value="search">
           <span data-translate="search">Ferramentas de busca</span>
@@ -185,6 +188,7 @@
         <label>
           <input
             type="radio"
+            required
             name="know-habemus"
             value="indication">
           <span data-translate="indication">Indicação de alguém</span>
@@ -192,18 +196,13 @@
         <label>
           <input
             type="radio"
+            required
             name="know-habemus"
             value="other">
           <span data-translate="other">Outros</span>
         </label>
-<!--
-        facebook
-        ferramentas de busca
-        oficinas
-        indicação de alguém
-        outros -->
       </div>
-      <label id="know-habemus-other">
+      <label id="know-habemus-other-wrapper" hidden>
         <span data-translate="specifyOther">por favor especifique</span>
         <input
           type="text"
@@ -213,7 +212,7 @@
       <label id="terms">
         <input
           type="checkbox"
-          name="agree-terms"
+          name="agree-terms-of-service"
           class="agree"
           required>
         <span data-translate="readAndAgree">Li e concordo com os </span>
@@ -234,7 +233,7 @@
 
   <section data-state="signup-success">
     <p>Signup realizado com sucesso!</p>
-    <button data-action="close" class="primary">ok</button>
+    <button data-close-action="close" class="primary">ok</button>
   </section>
   <!-- ^ signup ^ -->
 
@@ -289,6 +288,7 @@
 
     <button
       class="button-bottom"
+      data-close-action="logOut"
       data-translate="logOut">
       sair
     </button>

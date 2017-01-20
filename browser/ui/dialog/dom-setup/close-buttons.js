@@ -5,7 +5,11 @@ module.exports = function (dialog, options) {
   dialog.element.addEventListener('click', function (e) {
     var target = e.target;
 
-    var action = target.getAttribute('data-action');
+    var action = target.getAttribute('data-close-action');
+    
+    if (!action) {
+      return;
+    }
 
     switch (action) {
       case 'close':
@@ -14,6 +18,12 @@ module.exports = function (dialog, options) {
       case 'cancel':
         dialog.reject(new errors.UserCancelled('Action cancelled by the user.'));
         dialog.close();
+        break;
+      case 'logOut':
+        dialog.hAccountClient.logOut().then(function () {
+          dialog.reject(new errors.UserCancelled('Action cancelled by the user.'))
+          dialog.close();
+        })
         break;
     }
   });

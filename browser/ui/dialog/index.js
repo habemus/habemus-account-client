@@ -367,11 +367,7 @@ HAccountDialog.prototype.ensureAccount = function (options) {
       } else {
         return account;
       }
-    })
-    // .catch(function (err) {
-
-
-    // });
+    });
 
 };
 
