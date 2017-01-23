@@ -74,7 +74,7 @@ Colors reference:
   display: block;
   /*margin: 0 auto;*/
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
   border: none;
 }
 
@@ -241,7 +241,7 @@ Colors reference:
   font-size: 12px;
   padding: 0 8px;
   margin: 4px 0;
-  border: 1px solid @habemus-gray-dark;
+  border: 1px solid #cecece; /* @habemus-gray-light */
   width: 100%;
   box-sizing: border-box;
   background-color: #ffffff;
