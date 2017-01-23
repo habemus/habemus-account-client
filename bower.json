@@ -1,0 +1,21 @@
+{
+  "name": "h-account-client",
+  "description": "",
+  "main": [
+    "dist/h-account-client.js",
+    "dist/h-account-dialog.js"
+  ],
+  "authors": [
+    "Simon <simonxd@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
