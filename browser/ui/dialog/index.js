@@ -337,8 +337,15 @@ HAccountDialog.prototype.ensureAccount = function (options) {
           });
 
       } else {
+        // unknown error
+        console.warn('unknown error', err);
+        self.logOut();
+        return self.logIn();
+        // TODO it might be better to let consuming system
+        // to handle the error, but for now be defensive: never let
+        // the user go to a path with no feedback
         // normally reject original error
-        return Bluebird.reject(err);
+        // return Bluebird.reject(err);
       }
     })
     .then(function (account) {

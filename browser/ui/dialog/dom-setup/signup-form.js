@@ -22,11 +22,11 @@ module.exports = function (dialog, options) {
     
     var target = e.target;
     if (target.getAttribute('name') === 'know-habemus') {
-      if (target.getAttribute('value') === 'other') {
+      if (target.value === 'other') {
         signupReferrerOtherWrapper.removeAttribute('hidden');
-        signupReferrerOther.setAttribute('required', true);
+        signupReferrerOther.setAttribute('required', 'true');
       } else {
-        signupReferrerOtherWrapper.setAttribute('hidden', true);
+        signupReferrerOtherWrapper.setAttribute('hidden', 'true');
         signupReferrerOther.removeAttribute('required');
       }
     }
@@ -100,7 +100,7 @@ module.exports = function (dialog, options) {
       
       legal: {
         termsOfService: {
-          agreed: signupAgreeToTermsOfService.value ? true : false,
+          agreed: signupAgreeToTermsOfService.checked ? true : false,
         }
       },
     }, {

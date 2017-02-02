@@ -109,7 +109,10 @@ Colors reference:
 #h-account-dialog > button.dialog-close {
   position: absolute;
 
-  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="#cecece" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="#cecece" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
+  /*
+  MUST URL ENCODE SVG
+  http://stackoverflow.com/questions/30676125/svg-as-data-uri-triggers-xml-parsing-error-in-firefox*/
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="%23cecece" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="%23cecece" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
   /*height: 50px;
   width: 50px; MEDIA */
   padding: 0;
@@ -119,11 +122,11 @@ Colors reference:
 }
 
 #h-account-dialog > button.dialog-close:hover {
-  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="#6D6D6D" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="#6D6D6D" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="%236D6D6D" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="%236D6D6D" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
 }
 
 #h-account-dialog button.dialog-back {
-  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="MATERIAL"><g><g><polyline fill="none" stroke="#6D6D6D" stroke-miterlimit="10" points="10.315,2.602 0.96,12.14 10.315,21.678 "/></g><line fill="none" stroke="#6D6D6D" stroke-miterlimit="10" x1="0.96" y1="12.141" x2="23.478" y2="12.141"/></g></g></svg>') no-repeat 0 50%;
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="MATERIAL"><g><g><polyline fill="none" stroke="%236D6D6D" stroke-miterlimit="10" points="10.315,2.602 0.96,12.14 10.315,21.678 "/></g><line fill="none" stroke="%236D6D6D" stroke-miterlimit="10" x1="0.96" y1="12.141" x2="23.478" y2="12.141"/></g></g></svg>') no-repeat 0 50%;
   /*height: 50px;
   width: 50px; MEDIA */
   padding: 0 0 0 40px;
@@ -347,10 +350,12 @@ Colors reference:
 /* WIDTH FROM 0 TO 400 */
 @media screen and (max-width: 400px) {
   #h-account-dialog {
-    padding: 30px;
-
     top: 5%;
     transform: translate(0, 0);
+  }
+
+  #h-account-dialog > div.h-account-dialog-contents {
+    padding: 30px;
   }
 
   #h-account-dialog > button.dialog-close {
@@ -362,10 +367,13 @@ Colors reference:
 /* WIDTH FROM 401 */
 @media screen and (min-width: 401px) {
   #h-account-dialog {
-    padding: 50px;
-
-    top: 50%;
+    /* ensure firefox and safari use this style */
+    top: 50% !important;
     transform: translate(0, -50%);
+  }
+
+  #h-account-dialog > div.h-account-dialog-contents {
+    padding: 50px;
   }
 
   #h-account-dialog > button.dialog-close {
