@@ -62,6 +62,7 @@ gulp.task('javascript:client-ui', function () {
     })
     .pipe(source('h-account-dialog.js'))
     .pipe(buffer())
+    .pipe(gulpUglify())
     .pipe(gulpSize({
       title: 'javascript:client',
       showFiles: true

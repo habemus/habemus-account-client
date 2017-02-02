@@ -27,6 +27,7 @@ Colors reference:
   max-height: 100vh;
   box-sizing: border-box;
   overflow: auto;
+  text-align: left;
 
   /* styles default from  Polyfill - to be subcribed */
   /*top: 50%;
