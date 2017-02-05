@@ -15,6 +15,7 @@ const dialogStyles   = fs.readFileSync(__dirname + '/styles.css', 'utf8');
 // https://www.npmjs.com/package/brfs#methods
 const dialogPolyfillStyles = fs.readFileSync(require.resolve('dialog-polyfill/dialog-polyfill.css'), 'utf8')
 const domSetup = require('./dom-setup');
+const domSetupLanguage = require('./dom-setup/language');
 const errors = require('../../../errors');
 
 // constants
@@ -25,6 +26,11 @@ const STATE_SIGNUP = 'signup';
 const STATE_SIGNUP_SUCCESS = 'signup-success';
 const STATE_PASSWORD_RESET = 'password-reset';
 const STATE_EMAIL_VERIFICATION = 'email-verification';
+
+const LANGUAGES = {
+  'pt-BR': require('../languages/pt-BR.json'),
+  'en-US': require('../languages/en-US.json'),
+};
 
 /**
  * Auxiliary function that inserts a CSSString into the document
@@ -73,16 +79,23 @@ function HAccountDialog(options) {
   /**
    * Translation function
    */
-  this.t = options.t || function (key) {
-    console.warn('no translation function provided');
-    return key;
+  this.t = options.t || function translate(language, key) {
+
+    if (arguments.length < 2) {
+      throw new Error('language and key are required');
+    }
+
+    return LANGUAGES[language][key];
   };
 
   /**
    * Data store for the modal model
    * @type {DataObj}
    */
-  this.model = new DataObj();
+  this.model = new DataObj({
+    // default language is en-US
+    language: options.language || 'en-US',
+  });
 
   /**
    * Instantiate a DOM Element for the dialog
@@ -140,6 +153,11 @@ function HAccountDialog(options) {
     }
   }.bind(this));
 
+  // language
+  this.model.on('change:language', function (data) {
+    domSetupLanguage(this, options);
+  }.bind(this));
+
   // capture esc key cancel
   this.element.addEventListener('cancel', function (e) {
 
@@ -176,11 +194,17 @@ HAccountDialog.prototype.attach = function (containerElement) {
  * Shows the modal on the login ui
  * @return {Bluebird}
  */
-HAccountDialog.prototype.logIn = function () {
+HAccountDialog.prototype.logIn = function (options) {
+
+  options = options || {};
+
   this.model.set({
     state: STATE_LOGIN,
     action: 'logIn',
     noCancel: false,
+
+    // the language at which the user is accessing the account interface
+    language: options.language,
   });
 
   if (!this.element.hasAttribute('open')) {
@@ -197,11 +221,17 @@ HAccountDialog.prototype.logIn = function () {
  * Shows the dialog on the signup ui
  * @return {Bluebird}
  */
-HAccountDialog.prototype.signUp = function () {
+HAccountDialog.prototype.signUp = function (options) {
+
+  options = options || {};
+
   this.model.set({
     state: STATE_SIGNUP,
     action: 'signUp',
     noCancel: false,
+
+    // the language at which the user is accessing the account interface
+    language: options.language,
   });
 
   if (!this.element.hasAttribute('open')) {
@@ -214,12 +244,16 @@ HAccountDialog.prototype.signUp = function () {
   }.bind(this));
 };
 
-HAccountDialog.prototype.verifyEmail = function () {
+HAccountDialog.prototype.verifyEmail = function (options) {
+
+  options = options || {};
 
   this.model.set({
     state: STATE_EMAIL_VERIFICATION,
     action: 'verifyEmail',
     noCancel: true,
+
+    language: options.language,
   });
 
   if (!this.element.hasAttribute('open')) {
@@ -320,7 +354,7 @@ HAccountDialog.prototype.ensureAccount = function (options) {
       if (err.name === 'NotLoggedIn') {
         // user not logged in
 
-        return self.logIn()
+        return self.logIn(options)
           .then(function () {
             // the method MUST return the current user
             return self.hAccountClient.getCurrentAccount();
@@ -330,7 +364,7 @@ HAccountDialog.prototype.ensureAccount = function (options) {
         // user logged in, but for some reason the
         // account does not exist anymore
 
-        return self.signUp()
+        return self.signUp(options)
           .then(function () {
             // the method MUST return the current user
             return self.hAccountClient.getCurrentAccount();
@@ -340,7 +374,7 @@ HAccountDialog.prototype.ensureAccount = function (options) {
         // unknown error
         console.warn('unknown error', err);
         self.logOut();
-        return self.logIn();
+        return self.logIn(options);
         // TODO it might be better to let consuming system
         // to handle the error, but for now be defensive: never let
         // the user go to a path with no feedback
@@ -357,7 +391,7 @@ HAccountDialog.prototype.ensureAccount = function (options) {
         switch (statusValue) {
           case 'new':
           case 'verifying':
-            return self.verifyEmail();
+            return self.verifyEmail(options);
             break;
           case 'verified':
             return account;

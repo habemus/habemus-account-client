@@ -97,6 +97,11 @@ module.exports = function (dialog, options) {
       password: password,
       
       referrer: referrer,
+
+      preferences: {
+        // TODO: allow user to select language from ui
+        language: dialog.model.get('language'),
+      },
       
       legal: {
         termsOfService: {

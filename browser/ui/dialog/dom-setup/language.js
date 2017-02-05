@@ -8,6 +8,6 @@ module.exports = function (dialog, options) {
   translatableElements.forEach(function (element) {
     var translationKey = element.getAttribute('data-translate');
 
-    element.innerHTML = dialog.t(translationKey);
+    element.innerHTML = dialog.t(dialog.model.get('language'), translationKey);
   });
 };

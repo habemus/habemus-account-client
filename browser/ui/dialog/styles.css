@@ -112,7 +112,8 @@ Colors reference:
 
   /*
   MUST URL ENCODE SVG
-  http://stackoverflow.com/questions/30676125/svg-as-data-uri-triggers-xml-parsing-error-in-firefox*/
+  http://stackoverflow.com/questions/30676125/svg-as-data-uri-triggers-xml-parsing-error-in-firefox
+  */
   background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="Layer_1"></g><g id="Layer_2"><g><line fill="none" stroke="%23cecece" stroke-miterlimit="10" x1="1.103" y1="1.103" x2="22.897" y2="22.897"/><line fill="none" stroke="%23cecece" stroke-miterlimit="10" x1="1.103" y1="22.897" x2="22.897" y2="1.103"/></g></g></svg>') no-repeat 50% 50%;
   /*height: 50px;
   width: 50px; MEDIA */

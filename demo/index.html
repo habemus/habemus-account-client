@@ -36,42 +36,42 @@
       // serverURI: 'http://localhost:4000/public',
       // serverURI: 'https://api.habemus.io/account/v2',
       serverURI: 'http://localhost:9000/api/h-account/public',
-      t: function (key) {
+      // t: function (language, key) {
 
-        return ({
-          logIn: 'log in',
-          signUp: 'sign up',
-          logOut: 'log out',
-          usernameOrEmail: 'username or email',
-          password: 'password',
-          confirmYourPassword: 'confirm your password',
-          loginError: 'login error',
-          emailVerificationTitle: 'Verifique seu e-mail',
-          emailVerificationText: 'Sua conta foi criada com sucesso.<br> Para garantir sua segurança, enviamos um e-mail com os próximos passos da verificação.',
-          forgotPassword: 'forgot my password',
-          forgotPasswordTitle: 'Forgot my password',
-          forgotPasswordText: 'We\'ll send you an e-mail to reset your password',
-          PasswordResetSentTitle: 'Password reset request created with success.',
-          PasswordResetSentText: 'You will be receiving shortly an e-mail with further instructions.',
-          passwordResetError: 'Something went wrong with password reset. Please go back and try again',
-          fullName: 'full name',
-          username: 'username',
-          email: 'e-mail',
-          sendEmail: 'send e-mail',
-          howKnowHabemus: 'How did you get to know habemus?',
-          workshop: 'During a workshop',
-          facebook: 'Facebook',
-          search: 'Search engine',
-          indication: 'Someone told me',
-          other: 'Others',
-          specifyOther: 'Please specify',
-          readAndAgree: 'I read and agree with',
-          useTerms: 'terms of use',
-          signupError: 'sign up error',
-          back: 'back',
-        })[key];
+      //   return ({
+      //     logIn: 'log in',
+      //     signUp: 'sign up',
+      //     logOut: 'log out',
+      //     usernameOrEmail: 'username or email',
+      //     password: 'password',
+      //     confirmYourPassword: 'confirm your password',
+      //     loginError: 'login error',
+      //     emailVerificationTitle: 'Verifique seu e-mail',
+      //     emailVerificationText: 'Sua conta foi criada com sucesso.<br> Para garantir sua segurança, enviamos um e-mail com os próximos passos da verificação.',
+      //     forgotPassword: 'forgot my password',
+      //     forgotPasswordTitle: 'Forgot my password',
+      //     forgotPasswordText: 'We\'ll send you an e-mail to reset your password',
+      //     PasswordResetSentTitle: 'Password reset request created with success.',
+      //     PasswordResetSentText: 'You will be receiving shortly an e-mail with further instructions.',
+      //     passwordResetError: 'Something went wrong with password reset. Please go back and try again',
+      //     fullName: 'full name',
+      //     username: 'username',
+      //     email: 'e-mail',
+      //     sendEmail: 'send e-mail',
+      //     howKnowHabemus: 'How did you get to know habemus?',
+      //     workshop: 'During a workshop',
+      //     facebook: 'Facebook',
+      //     search: 'Search engine',
+      //     indication: 'Someone told me',
+      //     other: 'Others',
+      //     specifyOther: 'Please specify',
+      //     readAndAgree: 'I read and agree with',
+      //     useTerms: 'terms of use',
+      //     signupError: 'sign up error',
+      //     back: 'back',
+      //   })[key];
 
-      }
+      // }
     });
 
     accountDialog.on('auth-status-change', function (status) {
@@ -101,23 +101,28 @@
     }
 
     function ensureAccount() {
-      accountDialog.ensureAccount()
-        .then(function (user) {
-          console.log('ensureAccount success', user);
-        })
-        .catch(function (err) {
-          console.warn('ensureAccount error', err.stack);
-        })
+      accountDialog.ensureAccount({
+        language: 'pt-BR',
+      })
+      .then(function (user) {
+        console.log('ensureAccount success', user);
+      })
+      .catch(function (err) {
+        console.warn('ensureAccount error', err.stack);
+      })
     }
 
     function ensureVerifiedUser() {
-      accountDialog.ensureAccount({ ensureEmailVerified: true })
-        .then(function (user) {
-          console.log('ensureVerifiedUser success', user);
-        })
-        .catch(function (err) {
-          console.warn('ensureVerifiedUser error', err.stack);
-        })
+      accountDialog.ensureAccount({
+        ensureEmailVerified: true,
+        language: 'pt-BR',
+      })
+      .then(function (user) {
+        console.log('ensureVerifiedUser success', user);
+      })
+      .catch(function (err) {
+        console.warn('ensureVerifiedUser error', err.stack);
+      })
     }
 
     function logOut() {
