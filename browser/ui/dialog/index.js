@@ -202,10 +202,12 @@ HAccountDialog.prototype.logIn = function (options) {
     state: STATE_LOGIN,
     action: 'logIn',
     noCancel: false,
-
-    // the language at which the user is accessing the account interface
-    language: options.language,
   });
+
+  if (options.language) {
+    // the language at which the user is accessing the account interface
+    this.model.set('language', options.language);
+  }
 
   if (!this.element.hasAttribute('open')) {
     this.element.showModal();
@@ -229,10 +231,12 @@ HAccountDialog.prototype.signUp = function (options) {
     state: STATE_SIGNUP,
     action: 'signUp',
     noCancel: false,
-
-    // the language at which the user is accessing the account interface
-    language: options.language,
   });
+
+  if (options.language) {
+    // the language at which the user is accessing the account interface
+    this.model.set('language', options.language);
+  }
 
   if (!this.element.hasAttribute('open')) {
     this.element.showModal();
@@ -252,9 +256,12 @@ HAccountDialog.prototype.verifyEmail = function (options) {
     state: STATE_EMAIL_VERIFICATION,
     action: 'verifyEmail',
     noCancel: true,
-
-    language: options.language,
   });
+
+  if (options.language) {
+    // the language at which the user is accessing the account interface
+    this.model.set('language', options.language);
+  }
 
   if (!this.element.hasAttribute('open')) {
     this.element.showModal();

@@ -1,6 +1,7 @@
 // third-party dependencies
 const gulp       = require('gulp');
 const gulpSize   = require('gulp-size');
+const gulpRename = require('gulp-rename');
 const gulpUglify = require('gulp-uglify');
 
 const runSequence =  require('run-sequence');
@@ -37,7 +38,7 @@ gulp.task('javascript:client', function () {
     })
     .pipe(source('h-account-client.js'))
     .pipe(buffer())
-    .pipe(gulpUglify())
+    // .pipe(gulpUglify())
     // calculate size before writing source maps
     .pipe(gulpSize({
       title: 'javascript:client',
@@ -62,7 +63,7 @@ gulp.task('javascript:client-ui', function () {
     })
     .pipe(source('h-account-dialog.js'))
     .pipe(buffer())
-    .pipe(gulpUglify())
+    // .pipe(gulpUglify())
     .pipe(gulpSize({
       title: 'javascript:client',
       showFiles: true
@@ -71,7 +72,17 @@ gulp.task('javascript:client-ui', function () {
 });
 
 gulp.task('javascript', ['javascript:client', 'javascript:client-ui']);
-gulp.task('distribute', ['javascript']);
+gulp.task('distribute', ['javascript'], function () {
+  return gulp.src([
+    'dist/**/*.js',
+    '!dist/**/*.min.js'
+  ])
+  .pipe(gulpUglify())
+  .pipe(gulpRename(function (filePath) {
+    filePath.basename += ".min";
+  }))
+  .pipe(gulp.dest('./dist'));
+});
 
 // Static server
 gulp.task('serve:client', function() {
