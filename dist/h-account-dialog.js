@@ -1200,7 +1200,7 @@ module.exports={
   "indication": "someone recommended me",
   "other": "others",
   "specifyOther": "Please specify",
-  "readAndAgree": "I have read and agree with",
+  "readAndAgree": "I have read and agree with the",
   "useTerms": "terms of use",
   "signupError": "sign up error",
   "back": "back",
