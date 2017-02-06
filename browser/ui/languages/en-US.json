@@ -28,5 +28,6 @@
   "readAndAgree": "I read and agree with",
   "useTerms": "terms of use",
   "signupError": "sign up error",
-  "back": "back"
+  "back": "back",
+  "termsOfServiceURL": "https://habemus.io/legal/terms-of-service.html"
 }

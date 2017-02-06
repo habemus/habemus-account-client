@@ -10,4 +10,8 @@ module.exports = function (dialog, options) {
 
     element.innerHTML = dialog.t(dialog.model.get('language'), translationKey);
   });
+
+  // place terms of service url
+  var termsAnchor = dialog.element.querySelector('#terms > a');
+  termsAnchor.setAttribute('href', dialog.t(dialog.model.get('language'), 'termsOfServiceURL'));
 };

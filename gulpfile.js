@@ -71,7 +71,7 @@ gulp.task('javascript:client-ui', function () {
 });
 
 gulp.task('javascript', ['javascript:client', 'javascript:client-ui']);
-
+gulp.task('distribute', ['javascript']);
 
 // Static server
 gulp.task('serve:client', function() {

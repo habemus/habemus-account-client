@@ -28,5 +28,6 @@
   "readAndAgree": "Li e concordo com os",
   "useTerms": "termos de uso",
   "signupError": "erro ao cadastrar",
-  "back": "voltar"
+  "back": "voltar",
+  "termsOfServiceURL": "https://habemus.io/pt-BR/legal/terms-of-service.html"
 }
