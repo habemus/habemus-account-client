@@ -21,6 +21,9 @@
     "methods",
     "private.js",
     "index.js",
+    "errors.js",
+    "gulpfile.js",
+    "TODO: move all these files into a directory",
     "package.json"
   ]
 }
