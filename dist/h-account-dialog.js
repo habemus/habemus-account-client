@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.HAccountDialog = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.HAccountDialog = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 // constants
 const errors = require('../errors');
 
@@ -334,7 +334,7 @@ HAccountBrowserClient.prototype._setAuthStatus = function (status) {
 
 module.exports = HAccountBrowserClient;
 
-},{"../errors":14,"../index":15,"bluebird":17,"cache-promise-fn":18,"util":31}],3:[function(require,module,exports){
+},{"../errors":14,"../index":15,"bluebird":17,"cache-promise-fn":18,"util":32}],3:[function(require,module,exports){
 // internal dependencies
 const errors = require('../../../../errors');
 
@@ -746,7 +746,7 @@ const dialogTemplate = "<dialog id=\"h-account-dialog\">\n\n  <button class=\"di
 const dialogStyles   = "/*\nColors reference:\n\n@habemus-green-dark: #0adda6;\n@habemus-green-light: #3eeeb7;\n\n@habemus-off-white: #f5f5f5;\n@habemus-gray-light: #cecece;\n@habemus-gray-medium: #a3a3a3;\n@habemus-gray-dark: #6d6d6d;\n@habemus-dark: #3c3c3c;\n\n@habemus-error: #E54A4A;\n*/\n\n#h-account-dialog {\n  font-family: \"Montserrat\", sans-serif;\n  font-weight: 400;\n\n  /*padding: 50px; media query */\n  border: none;\n  width: 80%;\n  margin: 0 auto;\n  min-width: 280px;\n  max-width: 480px;\n\n  max-height: 100vh;\n  box-sizing: border-box;\n  overflow: auto;\n  text-align: left;\n\n  /* styles default from  Polyfill - to be subcribed */\n  /*top: 50%;\n  transform: translate(0, -50%); MEDIA*/\n}\n\n#h-account-dialog *[hidden] {\n  display: none !important;\n}\n\n#h-account-dialog h1 {\n  font-family: \"Montserrat\", sans-serif;\n  font-weight: 400;\n\n  font-size: 16px;\n  margin-bottom: 24px;\n}\n\n#h-account-dialog p {\n  font-family: \"Open Sans\", sans-serif;\n  font-weight: 400;\n  font-size: 14px;\n  margin-bottom: 24px;\n}\n\n#h-account-dialog + .backdrop,\n#h-account-dialog::backdrop {\n  background-color: rgba(0,0,0,0.6);\n}\n\n#h-account-dialog #logo-habemus {\n  display: block;\n  width: 94px;\n  margin-bottom: 24px;\n}\n\n#h-account-dialog button {\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 16px;\n  padding: 0 24px;\n  line-height: 50px;\n  background-color: #cecece; /* @habemus-gray-light */\n  color: #3c3c3c; /* @habemus-dark; */\n  text-align: center;\n  display: block;\n  /*margin: 0 auto;*/\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n  border: none;\n}\n\n#h-account-dialog button:hover {\n  background-color: #d6d6d6;\n}\n\n#h-account-dialog button.primary {\n  background-color: #0adda6; /* @habemus-green-dark; */\n  color: #3c3c3c; /* @habemus-dark; */\n}\n\n#h-account-dialog button.primary:hover {\n  background-color: #3eeeb7; /* @habemus-green-light; */\n  color: #3c3c3c; /* @habemus-dark; */\n}\n\n#h-account-dialog .button-container {\n  margin-bottom: -10px;\n}\n\n#h-account-dialog .button-container button {\n  display: inline-block;\n  margin-right: 10px;\n  margin-bottom: 10px;\n}\n\n#h-account-dialog .button-container button:last-child {\n  margin-right: 0;\n}\n\n#h-account-dialog > button.dialog-close {\n  position: absolute;\n\n  /*\n  MUST URL ENCODE SVG\n  http://stackoverflow.com/questions/30676125/svg-as-data-uri-triggers-xml-parsing-error-in-firefox\n  */\n  background: url('data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" enable-background=\"new 0 0 24 24\" xml:space=\"preserve\"><g id=\"Layer_1\"></g><g id=\"Layer_2\"><g><line fill=\"none\" stroke=\"%23cecece\" stroke-miterlimit=\"10\" x1=\"1.103\" y1=\"1.103\" x2=\"22.897\" y2=\"22.897\"/><line fill=\"none\" stroke=\"%23cecece\" stroke-miterlimit=\"10\" x1=\"1.103\" y1=\"22.897\" x2=\"22.897\" y2=\"1.103\"/></g></g></svg>') no-repeat 50% 50%;\n  /*height: 50px;\n  width: 50px; MEDIA */\n  padding: 0;\n\n  top: 2px;\n  right: 2px;\n}\n\n#h-account-dialog > button.dialog-close:hover {\n  background: url('data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" enable-background=\"new 0 0 24 24\" xml:space=\"preserve\"><g id=\"Layer_1\"></g><g id=\"Layer_2\"><g><line fill=\"none\" stroke=\"%236D6D6D\" stroke-miterlimit=\"10\" x1=\"1.103\" y1=\"1.103\" x2=\"22.897\" y2=\"22.897\"/><line fill=\"none\" stroke=\"%236D6D6D\" stroke-miterlimit=\"10\" x1=\"1.103\" y1=\"22.897\" x2=\"22.897\" y2=\"1.103\"/></g></g></svg>') no-repeat 50% 50%;\n}\n\n#h-account-dialog button.dialog-back {\n  background: url('data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" enable-background=\"new 0 0 24 24\" xml:space=\"preserve\"><g id=\"MATERIAL\"><g><g><polyline fill=\"none\" stroke=\"%236D6D6D\" stroke-miterlimit=\"10\" points=\"10.315,2.602 0.96,12.14 10.315,21.678 \"/></g><line fill=\"none\" stroke=\"%236D6D6D\" stroke-miterlimit=\"10\" x1=\"0.96\" y1=\"12.141\" x2=\"23.478\" y2=\"12.141\"/></g></g></svg>') no-repeat 0 50%;\n  /*height: 50px;\n  width: 50px; MEDIA */\n  padding: 0 0 0 40px;\n  font-family: 'Montserrat', sans-serif;\n  font-size: 16px;\n  top: 0px;\n  right: 0px;\n}\n\n/**\n * Error messages\n */\n#h-account-dialog .h-account-error-message {\n  color: #E54A4A;\n  display: none;\n\n  font-size: 12px;\n}\n\n#h-account-dialog .h-account-error-message.active {\n  display: block;\n}\n\n/**\n * State management\n */\n#h-account-dialog section[data-state] {\n  display: none;\n}\n\n#h-account-dialog section[data-state].active {\n  display: block;\n}\n\n/**\n * Action selector\n */\n\n#h-account-action-selector button {\n  font-family: \"Montserrat\", sans-serif;\n  font-size: 16px;\n  padding: 0;\n  line-height: 1.5;\n  background-color: transparent;\n  color: #a3a3a3; /* @habemus-gray-medium: */\n  text-align: left;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  border: none;\n  border-bottom: 2px solid transparent;\n  display: inline-block;\n}\n\n#h-account-action-selector button:hover {\n  color: #6d6d6d; /* @habemus-gray-dark; */\n  background: transparent;\n}\n\n#h-account-action-selector button.active {\n  color: #000000;\n  border-bottom: 2px solid #3eeeb7;\n}\n\n#h-account-action-selector span {\n  display: inline-block;\n  padding: 0 6px;\n}\n\n/**\n * Forms\n */\n#h-account-dialog form {\n  display: flex;\n  flex-direction: column;\n\n  margin-top: 24px;\n  margin-bottom: 0;\n}\n\n#h-account-dialog form label > * {\n  display: block;\n}\n\n#h-account-dialog form label {\n  margin-bottom: 24px;\n}\n\n#h-account-dialog form label > span,\n#h-account-dialog form .how-know-habemus label:first-child span{\n  font-size: 14px;\n  font-family: \"Open Sans\", sans-serif;\n}\n\n#h-account-dialog form .how-know-habemus label{\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n  margin: 8px 0;\n}\n\n#h-account-dialog form .how-know-habemus label span{\n  font-size: 12px;\n}\n\n#h-account-dialog form .how-know-habemus label [type=\"radio\"] {\n  margin: 3px 6px 3px 3px;\n}\n\n#h-account-dialog form input[type=\"text\"],\n#h-account-dialog form input[type=\"email\"],\n#h-account-dialog form input[type=\"password\"],\n#h-account-dialog form textarea {\n  height: 36px;\n  font-size: 12px;\n  padding: 0 8px;\n  margin: 4px 0;\n  border: 1px solid #cecece; /* @habemus-gray-light */\n  width: 100%;\n  box-sizing: border-box;\n  background-color: #ffffff;\n}\n\n#h-account-dialog form label [type=\"checkbox\"] {\n  margin: 3px 6px 3px 3px;\n}\n\n#h-account-dialog form button[type=\"submit\"] {\n  margin-top: 6px;\n}\n\n#h-account-dialog form label#terms{\n  display: inline-flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n}\n\n#h-account-dialog form label#terms a{\n  font-family: \"Open Sans\", sans-serif;\n  text-decoration: none;\n  color: #3eeeb7; /* @habemus-green-light; */\n  margin-left: 4px;\n}\n\n#h-account-dialog form label#terms a:hover{\n  color: #0adda6; /* @habemus-green-dark; */\n}\n\n#h-account-dialog button.button-bottom {\n  font-size: 14px;\n  font-family: \"Montserrat\", sans-serif;\n  color: #a6a6a6;\n  background-color: transparent;\n  padding: 0;\n  line-height: 1.5;\n  margin-top: 18px;\n}\n\n[data-state=\"password-reset-loading\"],\n[data-state=\"login-loading\"],\n[data-state=\"signup-loading\"],\n[data-state=\"password-reset-loading\"] {\n  display: none;\n}\n\n[data-state=\"password-reset-loading\"].active,\n[data-state=\"login-loading\"].active,\n[data-state=\"signup-loading\"].active,\n[data-state=\"password-reset-loading\"].active {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  z-index: 30;\n}\n\n[data-state=\"password-reset-loading\"] .spinner,\n[data-state=\"login-loading\"] .spinner,\n[data-state=\"signup-loading\"] .spinner,\n[data-state=\"password-reset-loading\"] .spinner {\n  width: 60px;\n  height: 60px;\n  background-color: #3eeeb7; /* @habemus-green-light */\n\n  margin: 100px auto;\n  animation: sk-rotateplane 1.2s infinite ease-in-out;\n}\n\n/*\n * animation of loading states\n */\n@-webkit-keyframes sk-rotateplane {\n  0% { -webkit-transform: perspective(120px) }\n  50% { -webkit-transform: perspective(120px) rotateY(180deg) }\n  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }\n}\n\n@keyframes sk-rotateplane {\n  0% {\n  transform: perspective(120px) rotateX(0deg) rotateY(0deg);\n  } 50% {\n  transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);\n  } 100% {\n  transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);\n  }\n}\n\n@keyframes loading-animation {\n  0%, 100% {\n    height: 2px;\n    width: 2px;\n  }\n  50% {\n    height: 50px;\n    width: 50px;\n    transform: translate(-50%, -50%);\n  }\n}\n\n/* WIDTH FROM 0 TO 400 */\n@media screen and (max-width: 400px) {\n  #h-account-dialog {\n    top: 5%;\n    transform: translate(0, 0);\n  }\n\n  #h-account-dialog > div.h-account-dialog-contents {\n    padding: 30px;\n  }\n\n  #h-account-dialog > button.dialog-close {\n    height: 40px;\n    width: 40px;\n  }\n}\n\n/* WIDTH FROM 401 */\n@media screen and (min-width: 401px) {\n  #h-account-dialog {\n    /* ensure firefox and safari use this style */\n    top: 50% !important;\n    transform: translate(0, -50%);\n  }\n\n  #h-account-dialog > div.h-account-dialog-contents {\n    padding: 50px;\n  }\n\n  #h-account-dialog > button.dialog-close {\n    height: 50px;\n    width: 50px;\n  }\n}\n";
 // according to brfs docs, require.resolve() may be used as well
 // https://www.npmjs.com/package/brfs#methods
-const dialogPolyfillStyles = "dialog {\n  position: absolute;\n  left: 0; right: 0;\n  width: -moz-fit-content;\n  width: -webkit-fit-content;\n  width: fit-content;\n  height: -moz-fit-content;\n  height: -webkit-fit-content;\n  height: fit-content;\n  margin: auto;\n  border: solid;\n  padding: 1em;\n  background: white;\n  color: black;\n  display: none;\n}\n\ndialog[open] {\n  display: block;\n}\n\ndialog + .backdrop {\n  position: fixed;\n  top: 0; right: 0; bottom: 0; left: 0;\n  background: rgba(0,0,0,0.1);\n}\n\n/* for small devices, modal dialogs go full-screen */\n@media screen and (max-width: 540px) {\n  dialog[_polyfill_modal] {  /* TODO: implement */\n    top: 0;\n    width: auto;\n    margin: 1em;\n  }\n}\n\n._dialog_overlay {\n  position: fixed;\n  top: 0; right: 0; bottom: 0; left: 0;\n}\n\ndialog.fixed {\n  position: fixed;\n  top: 50%;\n  transform: translate(0, -50%);\n}"
+const dialogPolyfillStyles = "dialog {\n  position: absolute;\n  left: 0; right: 0;\n  width: -moz-fit-content;\n  width: -webkit-fit-content;\n  width: fit-content;\n  height: -moz-fit-content;\n  height: -webkit-fit-content;\n  height: fit-content;\n  margin: auto;\n  border: solid;\n  padding: 1em;\n  background: white;\n  color: black;\n  display: block;\n}\n\ndialog:not([open]) {\n  display: none;\n}\n\ndialog + .backdrop {\n  position: fixed;\n  top: 0; right: 0; bottom: 0; left: 0;\n  background: rgba(0,0,0,0.1);\n}\n\n._dialog_overlay {\n  position: fixed;\n  top: 0; right: 0; bottom: 0; left: 0;\n}\n\ndialog.fixed {\n  position: fixed;\n  top: 50%;\n  transform: translate(0, -50%);\n}"
 const domSetup = require('./dom-setup');
 const domSetupLanguage = require('./dom-setup/language');
 const errors = require('../../../errors');
@@ -1172,7 +1172,7 @@ AUTH_PROXY_METHODS.forEach(function (method) {
 
 module.exports = HAccountDialog;
 
-},{"../../":2,"../../../errors":14,"../languages/en-US.json":12,"../languages/pt-BR.json":13,"./dom-setup":5,"./dom-setup/language":6,"bluebird":17,"data-obj":21,"dialog-polyfill":22,"util":31}],12:[function(require,module,exports){
+},{"../../":2,"../../../errors":14,"../languages/en-US.json":12,"../languages/pt-BR.json":13,"./dom-setup":5,"./dom-setup/language":6,"bluebird":17,"data-obj":21,"dialog-polyfill":22,"util":32}],12:[function(require,module,exports){
 module.exports={
   "logIn": "log in",
   "signUp": "sign up",
@@ -1397,7 +1397,7 @@ exports.AccountCancelled = AccountCancelled;
 exports.NotLoggedIn = NotLoggedIn;
 exports.UserCancelled = UserCancelled;
 
-},{"util":31}],15:[function(require,module,exports){
+},{"util":32}],15:[function(require,module,exports){
 // native
 const util         = require('util');
 const EventEmitter = require('events');
@@ -1434,7 +1434,7 @@ Object.assign(HAccount.prototype, require('./methods/public'));
 
 module.exports = HAccount;
 
-},{"./methods/public":16,"bluebird":17,"events":23,"util":31}],16:[function(require,module,exports){
+},{"./methods/public":16,"bluebird":17,"events":23,"util":32}],16:[function(require,module,exports){
 // third-party
 const Bluebird   = require('bluebird');
 const superagent = require('superagent');
@@ -1908,12 +1908,12 @@ exports.updateApplicationConfig = function (authToken, username, applicationId, 
   }.bind(this));
 };
 
-},{"../errors":14,"bluebird":17,"superagent":25}],17:[function(require,module,exports){
-(function (process,global){
+},{"../errors":14,"bluebird":17,"superagent":26}],17:[function(require,module,exports){
+(function (process,global,setImmediate){
 /* @preserve
  * The MIT License (MIT)
  * 
- * Copyright (c) 2013-2015 Petka Antonov
+ * Copyright (c) 2013-2018 Petka Antonov
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -1935,7 +1935,7 @@ exports.updateApplicationConfig = function (authToken, username, applicationId, 
  * 
  */
 /**
- * bluebird build version 3.4.6
+ * bluebird build version 3.5.2
  * Features enabled: core, race, call_get, generators, map, nodeify, promisify, props, reduce, settle, some, using, timers, filter, any, each
 */
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Promise=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof _dereq_=="function"&&_dereq_;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof _dereq_=="function"&&_dereq_;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
@@ -2090,29 +2090,28 @@ if (!util.hasDevTools) {
     };
 }
 
-Async.prototype.invokeFirst = function (fn, receiver, arg) {
-    this._normalQueue.unshift(fn, receiver, arg);
-    this._queueTick();
-};
-
-Async.prototype._drainQueue = function(queue) {
+function _drainQueue(queue) {
     while (queue.length() > 0) {
-        var fn = queue.shift();
-        if (typeof fn !== "function") {
-            fn._settlePromises();
-            continue;
-        }
+        _drainQueueStep(queue);
+    }
+}
+
+function _drainQueueStep(queue) {
+    var fn = queue.shift();
+    if (typeof fn !== "function") {
+        fn._settlePromises();
+    } else {
         var receiver = queue.shift();
         var arg = queue.shift();
         fn.call(receiver, arg);
     }
-};
+}
 
 Async.prototype._drainQueues = function () {
-    this._drainQueue(this._normalQueue);
+    _drainQueue(this._normalQueue);
     this._reset();
     this._haveDrainedQueues = true;
-    this._drainQueue(this._lateQueue);
+    _drainQueue(this._lateQueue);
 };
 
 Async.prototype._queueTick = function () {
@@ -2589,6 +2588,7 @@ var getDomain = Promise._getDomain;
 var async = Promise._async;
 var Warning = _dereq_("./errors").Warning;
 var util = _dereq_("./util");
+var es5 = _dereq_("./es5");
 var canAttachTrace = util.canAttachTrace;
 var unhandledRejectionHandled;
 var possiblyUnhandledRejection;
@@ -2623,7 +2623,10 @@ Promise.prototype.suppressUnhandledRejections = function() {
 Promise.prototype._ensurePossibleRejectionHandled = function () {
     if ((this._bitField & 524288) !== 0) return;
     this._setRejectionIsUnhandled();
-    async.invokeLater(this._notifyUnhandledRejection, this, undefined);
+    var self = this;
+    setTimeout(function() {
+        self._notifyUnhandledRejection();
+    }, 1);
 };
 
 Promise.prototype._notifyUnhandledRejectionIsHandled = function () {
@@ -2704,6 +2707,7 @@ Promise.longStackTraces = function () {
     if (!config.longStackTraces && longStackTracesIsSupported()) {
         var Promise_captureStackTrace = Promise.prototype._captureStackTrace;
         var Promise_attachExtraTrace = Promise.prototype._attachExtraTrace;
+        var Promise_dereferenceTrace = Promise.prototype._dereferenceTrace;
         config.longStackTraces = true;
         disableLongStackTraces = function() {
             if (async.haveItemsQueued() && !config.longStackTraces) {
@@ -2711,12 +2715,14 @@ Promise.longStackTraces = function () {
             }
             Promise.prototype._captureStackTrace = Promise_captureStackTrace;
             Promise.prototype._attachExtraTrace = Promise_attachExtraTrace;
+            Promise.prototype._dereferenceTrace = Promise_dereferenceTrace;
             Context.deactivateLongStackTraces();
             async.enableTrampoline();
             config.longStackTraces = false;
         };
         Promise.prototype._captureStackTrace = longStackTracesCaptureStackTrace;
         Promise.prototype._attachExtraTrace = longStackTracesAttachExtraTrace;
+        Promise.prototype._dereferenceTrace = longStackTracesDereferenceTrace;
         Context.activateLongStackTraces();
         async.disableTrampolineIfNecessary();
     }
@@ -2732,10 +2738,14 @@ var fireDomEvent = (function() {
             var event = new CustomEvent("CustomEvent");
             util.global.dispatchEvent(event);
             return function(name, event) {
-                var domEvent = new CustomEvent(name.toLowerCase(), {
+                var eventData = {
                     detail: event,
                     cancelable: true
-                });
+                };
+                es5.defineProperty(
+                    eventData, "promise", {value: event.promise});
+                es5.defineProperty(eventData, "reason", {value: event.reason});
+                var domEvent = new CustomEvent(name.toLowerCase(), eventData);
                 return !util.global.dispatchEvent(domEvent);
             };
         } else if (typeof Event === "function") {
@@ -2746,6 +2756,8 @@ var fireDomEvent = (function() {
                     cancelable: true
                 });
                 domEvent.detail = event;
+                es5.defineProperty(domEvent, "promise", {value: event.promise});
+                es5.defineProperty(domEvent, "reason", {value: event.reason});
                 return !util.global.dispatchEvent(domEvent);
             };
         } else {
@@ -2874,6 +2886,7 @@ Promise.config = function(opts) {
             Promise.prototype._fireEvent = defaultFireEvent;
         }
     }
+    return Promise;
 };
 
 function defaultFireEvent() { return false; }
@@ -2893,6 +2906,7 @@ Promise.prototype._attachCancellationCallback = function(onCancel) {
 };
 Promise.prototype._captureStackTrace = function () {};
 Promise.prototype._attachExtraTrace = function () {};
+Promise.prototype._dereferenceTrace = function () {};
 Promise.prototype._clearCancellationData = function() {};
 Promise.prototype._propagateFrom = function (parent, flags) {
     ;
@@ -2996,6 +3010,10 @@ function longStackTracesAttachExtraTrace(error, ignoreSelf) {
             util.notEnumerableProp(error, "__stackCleaned__", true);
         }
     }
+}
+
+function longStackTracesDereferenceTrace() {
+    this._trace = undefined;
 }
 
 function checkForgottenReturns(returnValue, promiseCreated, name, promise,
@@ -3144,7 +3162,7 @@ function stackFramesAsArray(error) {
             break;
         }
     }
-    if (i > 0) {
+    if (i > 0 && error.name != "SyntaxError") {
         stack = stack.slice(i);
     }
     return stack;
@@ -3157,7 +3175,7 @@ function parseStackAndMessage(error) {
                 ? stackFramesAsArray(error) : ["    (No stack trace)"];
     return {
         message: message,
-        stack: cleanStack(stack)
+        stack: error.name == "SyntaxError" ? stack : cleanStack(stack)
     };
 }
 
@@ -3499,7 +3517,7 @@ return {
 };
 };
 
-},{"./errors":12,"./util":36}],10:[function(_dereq_,module,exports){
+},{"./errors":12,"./es5":13,"./util":36}],10:[function(_dereq_,module,exports){
 "use strict";
 module.exports = function(Promise) {
 function returner() {
@@ -3795,10 +3813,11 @@ Promise.filter = function (promises, fn, options) {
 
 },{}],15:[function(_dereq_,module,exports){
 "use strict";
-module.exports = function(Promise, tryConvertToPromise) {
+module.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
 var util = _dereq_("./util");
 var CancellationError = Promise.CancellationError;
 var errorObj = util.errorObj;
+var catchFilter = _dereq_("./catch_filter")(NEXT_FILTER);
 
 function PassThroughHandlerContext(promise, type, handler) {
     this.promise = promise;
@@ -3850,7 +3869,9 @@ function finallyHandler(reasonOrValue) {
         var ret = this.isFinallyHandler()
             ? handler.call(promise._boundValue())
             : handler.call(promise._boundValue(), reasonOrValue);
-        if (ret !== undefined) {
+        if (ret === NEXT_FILTER) {
+            return ret;
+        } else if (ret !== undefined) {
             promise._setReturnedNonUndefined();
             var maybePromise = tryConvertToPromise(ret, promise);
             if (maybePromise instanceof Promise) {
@@ -3899,14 +3920,46 @@ Promise.prototype["finally"] = function (handler) {
                              finallyHandler);
 };
 
+
 Promise.prototype.tap = function (handler) {
     return this._passThrough(handler, 1, finallyHandler);
+};
+
+Promise.prototype.tapCatch = function (handlerOrPredicate) {
+    var len = arguments.length;
+    if(len === 1) {
+        return this._passThrough(handlerOrPredicate,
+                                 1,
+                                 undefined,
+                                 finallyHandler);
+    } else {
+         var catchInstances = new Array(len - 1),
+            j = 0, i;
+        for (i = 0; i < len - 1; ++i) {
+            var item = arguments[i];
+            if (util.isObject(item)) {
+                catchInstances[j++] = item;
+            } else {
+                return Promise.reject(new TypeError(
+                    "tapCatch statement predicate: "
+                    + "expecting an object but got " + util.classString(item)
+                ));
+            }
+        }
+        catchInstances.length = j;
+        var handler = arguments[i];
+        return this._passThrough(catchFilter(catchInstances, handler, this),
+                                 1,
+                                 undefined,
+                                 finallyHandler);
+    }
+
 };
 
 return PassThroughHandlerContext;
 };
 
-},{"./util":36}],16:[function(_dereq_,module,exports){
+},{"./catch_filter":7,"./util":36}],16:[function(_dereq_,module,exports){
 "use strict";
 module.exports = function(Promise,
                           apiRejection,
@@ -4066,7 +4119,7 @@ PromiseSpawn.prototype._continue = function (result) {
             if (maybePromise === null) {
                 this._promiseRejected(
                     new TypeError(
-                        "A value %s was yielded that could not be treated as a promise\u000a\u000a    See http://goo.gl/MqrFmX\u000a\u000a".replace("%s", value) +
+                        "A value %s was yielded that could not be treated as a promise\u000a\u000a    See http://goo.gl/MqrFmX\u000a\u000a".replace("%s", String(value)) +
                         "From coroutine:\u000a" +
                         this._stack.split("\n").slice(1, -7).join("\n")
                     )
@@ -4696,30 +4749,31 @@ var createContext = Context.create;
 var debug = _dereq_("./debuggability")(Promise, Context);
 var CapturedTrace = debug.CapturedTrace;
 var PassThroughHandlerContext =
-    _dereq_("./finally")(Promise, tryConvertToPromise);
+    _dereq_("./finally")(Promise, tryConvertToPromise, NEXT_FILTER);
 var catchFilter = _dereq_("./catch_filter")(NEXT_FILTER);
 var nodebackForPromise = _dereq_("./nodeback");
 var errorObj = util.errorObj;
 var tryCatch = util.tryCatch;
 function check(self, executor) {
+    if (self == null || self.constructor !== Promise) {
+        throw new TypeError("the promise constructor cannot be invoked directly\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
+    }
     if (typeof executor !== "function") {
         throw new TypeError("expecting a function but got " + util.classString(executor));
     }
-    if (self.constructor !== Promise) {
-        throw new TypeError("the promise constructor cannot be invoked directly\u000a\u000a    See http://goo.gl/MqrFmX\u000a");
-    }
+
 }
 
 function Promise(executor) {
+    if (executor !== INTERNAL) {
+        check(this, executor);
+    }
     this._bitField = 0;
     this._fulfillmentHandler0 = undefined;
     this._rejectionHandler0 = undefined;
     this._promise0 = undefined;
     this._receiver0 = undefined;
-    if (executor !== INTERNAL) {
-        check(this, executor);
-        this._resolveFromExecutor(executor);
-    }
+    this._resolveFromExecutor(executor);
     this._promiseCreated();
     this._fireEvent("promiseCreated", this);
 }
@@ -4738,8 +4792,8 @@ Promise.prototype.caught = Promise.prototype["catch"] = function (fn) {
             if (util.isObject(item)) {
                 catchInstances[j++] = item;
             } else {
-                return apiRejection("expecting an object but got " +
-                    "A catch statement predicate " + util.classString(item));
+                return apiRejection("Catch statement predicate: " +
+                    "expecting an object but got " + util.classString(item));
             }
         }
         catchInstances.length = j;
@@ -5118,6 +5172,7 @@ function(reason, synchronous, ignoreNonErrorWarnings) {
 };
 
 Promise.prototype._resolveFromExecutor = function (executor) {
+    if (executor === INTERNAL) return;
     var promise = this;
     this._captureStackTrace();
     this._pushContext();
@@ -5281,6 +5336,7 @@ Promise.prototype._fulfill = function (value) {
         } else {
             async.settlePromises(this);
         }
+        this._dereferenceTrace();
     }
 };
 
@@ -5375,7 +5431,7 @@ _dereq_("./synchronous_inspection")(Promise);
 _dereq_("./join")(
     Promise, PromiseArray, tryConvertToPromise, INTERNAL, async, getDomain);
 Promise.Promise = Promise;
-Promise.version = "3.4.6";
+Promise.version = "3.5.2";
 _dereq_('./map.js')(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
 _dereq_('./call_get.js')(Promise);
 _dereq_('./using.js')(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);
@@ -5427,6 +5483,7 @@ function toResolutionValue(val) {
     switch(val) {
     case -2: return [];
     case -3: return {};
+    case -6: return new Map();
     }
 }
 
@@ -5976,7 +6033,7 @@ function PropertiesPromiseArray(obj) {
     }
     this.constructor$(entries);
     this._isMap = isMap;
-    this._init$(undefined, -3);
+    this._init$(undefined, isMap ? -6 : -3);
 }
 util.inherits(PropertiesPromiseArray, PromiseArray);
 
@@ -6063,23 +6120,6 @@ Queue.prototype._pushOne = function (arg) {
     var i = (this._front + length) & (this._capacity - 1);
     this[i] = arg;
     this._length = length + 1;
-};
-
-Queue.prototype._unshiftOne = function(value) {
-    var capacity = this._capacity;
-    this._checkCapacity(this.length() + 1);
-    var front = this._front;
-    var i = (((( front - 1 ) &
-                    ( capacity - 1) ) ^ capacity ) - capacity );
-    this[i] = value;
-    this._front = i;
-    this._length = this.length() + 1;
-};
-
-Queue.prototype.unshift = function(fn, receiver, arg) {
-    this._unshiftOne(arg);
-    this._unshiftOne(receiver);
-    this._unshiftOne(fn);
 };
 
 Queue.prototype.push = function (fn, receiver, arg) {
@@ -6392,11 +6432,11 @@ if (util.isNode && typeof MutationObserver === "undefined") {
 
         var scheduleToggle = function() {
             if (toggleScheduled) return;
-                toggleScheduled = true;
-                div2.classList.toggle("foo");
-            };
+            toggleScheduled = true;
+            div2.classList.toggle("foo");
+        };
 
-            return function schedule(fn) {
+        return function schedule(fn) {
             var o = new MutationObserver(function() {
                 o.disconnect();
                 fn();
@@ -7327,8 +7367,12 @@ function toFastProperties(obj) {
     /*jshint -W027,-W055,-W031*/
     function FakeConstructor() {}
     FakeConstructor.prototype = obj;
-    var l = 8;
-    while (l--) new FakeConstructor();
+    var receiver = new FakeConstructor();
+    function ic() {
+        return typeof receiver.foo;
+    }
+    ic();
+    ic();
     return obj;
     eval(obj);
 }
@@ -7355,10 +7399,11 @@ function safeToString(obj) {
 }
 
 function isError(obj) {
-    return obj !== null &&
+    return obj instanceof Error ||
+        (obj !== null &&
            typeof obj === "object" &&
            typeof obj.message === "string" &&
-           typeof obj.name === "string";
+           typeof obj.name === "string");
 }
 
 function markAsOriginatingFromRejection(e) {
@@ -7442,8 +7487,11 @@ if (typeof Symbol !== "undefined" && Symbol.iterator) {
 var isNode = typeof process !== "undefined" &&
         classString(process).toLowerCase() === "[object process]";
 
-function env(key, def) {
-    return isNode ? process.env[key] : def;
+var hasEnvVariables = typeof process !== "undefined" &&
+    typeof process.env !== "undefined";
+
+function env(key) {
+    return hasEnvVariables ? process.env[key] : undefined;
 }
 
 function getNativePromise() {
@@ -7491,6 +7539,7 @@ var ret = {
     hasDevTools: typeof chrome !== "undefined" && chrome &&
                  typeof chrome.loadTimes === "function",
     isNode: isNode,
+    hasEnvVariables: hasEnvVariables,
     env: env,
     global: globalObject,
     getNativePromise: getNativePromise,
@@ -7508,8 +7557,8 @@ module.exports = ret;
 
 },{"./es5":13}]},{},[4])(4)
 });                    ;if (typeof window !== 'undefined' && window !== null) {                               window.P = window.Promise;                                                     } else if (typeof self !== 'undefined' && self !== null) {                             self.P = self.Promise;                                                         }
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":24}],18:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
+},{"_process":25,"timers":30}],18:[function(require,module,exports){
 function _toArray(obj) {
   return Array.prototype.slice.call(obj, 0);
 }
@@ -8035,11 +8084,12 @@ Object.assign(DataModel.prototype, require('./array-methods'));
 
 module.exports = DataModel;
 
-},{"./array-methods":20,"events":23,"util":31}],22:[function(require,module,exports){
+},{"./array-methods":20,"events":23,"util":32}],22:[function(require,module,exports){
 (function() {
 
+  // nb. This is for IE10 and lower _only_.
   var supportCustomEvent = window.CustomEvent;
-  if (!supportCustomEvent || typeof supportCustomEvent == 'object') {
+  if (!supportCustomEvent || typeof supportCustomEvent === 'object') {
     supportCustomEvent = function CustomEvent(event, x) {
       x = x || {};
       var ev = document.createEvent('CustomEvent');
@@ -8050,6 +8100,32 @@ module.exports = DataModel;
   }
 
   /**
+   * @param {Element} el to check for stacking context
+   * @return {boolean} whether this el or its parents creates a stacking context
+   */
+  function createsStackingContext(el) {
+    while (el && el !== document.body) {
+      var s = window.getComputedStyle(el);
+      var invalid = function(k, ok) {
+        return !(s[k] === undefined || s[k] === ok);
+      }
+      if (s.opacity < 1 ||
+          invalid('zIndex', 'auto') ||
+          invalid('transform', 'none') ||
+          invalid('mixBlendMode', 'normal') ||
+          invalid('filter', 'none') ||
+          invalid('perspective', 'none') ||
+          s['isolation'] === 'isolate' ||
+          s.position === 'fixed' ||
+          s.webkitOverflowScrolling === 'touch') {
+        return true;
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  /**
    * Finds the nearest <dialog> from the passed element.
    *
    * @param {Element} el to search from
@@ -8057,7 +8133,7 @@ module.exports = DataModel;
    */
   function findNearestDialog(el) {
     while (el) {
-      if (el.nodeName.toUpperCase() == 'DIALOG') {
+      if (el.localName === 'dialog') {
         return /** @type {HTMLDialogElement} */ (el);
       }
       el = el.parentElement;
@@ -8073,7 +8149,7 @@ module.exports = DataModel;
    * @param {Element} el to blur
    */
   function safeBlur(el) {
-    if (el && el.blur && el != document.body) {
+    if (el && el.blur && el !== document.body) {
       el.blur();
     }
   }
@@ -8085,11 +8161,22 @@ module.exports = DataModel;
    */
   function inNodeList(nodeList, node) {
     for (var i = 0; i < nodeList.length; ++i) {
-      if (nodeList[i] == node) {
+      if (nodeList[i] === node) {
         return true;
       }
     }
     return false;
+  }
+
+  /**
+   * @param {HTMLFormElement} el to check
+   * @return {boolean} whether this form has method="dialog"
+   */
+  function isFormMethodDialog(el) {
+    if (!el || !el.hasAttribute('method')) {
+      return false;
+    }
+    return el.getAttribute('method').toLowerCase() === 'dialog';
   }
 
   /**
@@ -8114,13 +8201,29 @@ module.exports = DataModel;
       dialog.returnValue = '';
     }
 
-    this.maybeHideModal = this.maybeHideModal.bind(this);
     if ('MutationObserver' in window) {
-      // IE11+, most other browsers.
-      var mo = new MutationObserver(this.maybeHideModal);
-      mo.observe(dialog, { attributes: true, attributeFilter: ['open'] });
+      var mo = new MutationObserver(this.maybeHideModal.bind(this));
+      mo.observe(dialog, {attributes: true, attributeFilter: ['open']});
     } else {
-      dialog.addEventListener('DOMAttrModified', this.maybeHideModal);
+      // IE10 and below support. Note that DOMNodeRemoved etc fire _before_ removal. They also
+      // seem to fire even if the element was removed as part of a parent removal. Use the removed
+      // events to force downgrade (useful if removed/immediately added).
+      var removed = false;
+      var cb = function() {
+        removed ? this.downgradeModal() : this.maybeHideModal();
+        removed = false;
+      }.bind(this);
+      var timeout;
+      var delayModel = function(ev) {
+        if (ev.target !== dialog) { return; }  // not for a child element
+        var cand = 'DOMNodeRemoved';
+        removed |= (ev.type.substr(0, cand.length) === cand);
+        window.clearTimeout(timeout);
+        timeout = window.setTimeout(cb, 0);
+      };
+      ['DOMAttrModified', 'DOMNodeRemoved', 'DOMNodeRemovedFromDocument'].forEach(function(name) {
+        dialog.addEventListener(name, delayModel);
+      });
     }
     // Note that the DOM is observed inside DialogManager while any dialog
     // is being displayed as a modal, to catch modal removal from the DOM.
@@ -8132,7 +8235,7 @@ module.exports = DataModel;
 
     this.backdrop_ = document.createElement('div');
     this.backdrop_.className = 'backdrop';
-    this.backdropClick_ = this.backdropClick_.bind(this);
+    this.backdrop_.addEventListener('click', this.backdropClick_.bind(this));
   }
 
   dialogPolyfillInfo.prototype = {
@@ -8147,26 +8250,28 @@ module.exports = DataModel;
      * longer open or is no longer part of the DOM.
      */
     maybeHideModal: function() {
-      if (!this.openAsModal_) { return; }
-      if (this.dialog_.hasAttribute('open') &&
-          document.body.contains(this.dialog_)) { return; }
+      if (this.dialog_.hasAttribute('open') && document.body.contains(this.dialog_)) { return; }
+      this.downgradeModal();
+    },
 
+    /**
+     * Remove this dialog from the modal top layer, leaving it as a non-modal.
+     */
+    downgradeModal: function() {
+      if (!this.openAsModal_) { return; }
       this.openAsModal_ = false;
       this.dialog_.style.zIndex = '';
 
-      // This won't match the native <dialog> exactly because if the user set
-      // top on a centered polyfill dialog, that top gets thrown away when the
-      // dialog is closed. Not sure it's possible to polyfill this perfectly.
+      // This won't match the native <dialog> exactly because if the user set top on a centered
+      // polyfill dialog, that top gets thrown away when the dialog is closed. Not sure it's
+      // possible to polyfill this perfectly.
       if (this.replacedStyleTop_) {
         this.dialog_.style.top = '';
         this.replacedStyleTop_ = false;
       }
 
-      // Optimistically clear the modal part of this <dialog>.
-      this.backdrop_.removeEventListener('click', this.backdropClick_);
-      if (this.backdrop_.parentElement) {
-        this.backdrop_.parentElement.removeChild(this.backdrop_);
-      }
+      // Clear the backdrop and remove from the manager.
+      this.backdrop_.parentNode && this.backdrop_.parentNode.removeChild(this.backdrop_);
       dialogPolyfill.dm.removeDialog(this);
     },
 
@@ -8189,6 +8294,19 @@ module.exports = DataModel;
      * @param {!Event} e to redirect
      */
     backdropClick_: function(e) {
+      if (!this.dialog_.hasAttribute('tabindex')) {
+        // Clicking on the backdrop should move the implicit cursor, even if dialog cannot be
+        // focused. Create a fake thing to focus on. If the backdrop was _before_ the dialog, this
+        // would not be needed - clicks would move the implicit cursor there.
+        var fake = document.createElement('div');
+        this.dialog_.insertBefore(fake, this.dialog_.firstChild);
+        fake.tabIndex = -1;
+        fake.focus();
+        this.dialog_.removeChild(fake);
+      } else {
+        this.dialog_.focus();
+      }
+
       var redirectedEvent = document.createEvent('MouseEvents');
       redirectedEvent.initMouseEvent(e.type, e.bubbles, e.cancelable, window,
           e.detail, e.screenX, e.screenY, e.clientX, e.clientY, e.ctrlKey,
@@ -8204,6 +8322,9 @@ module.exports = DataModel;
     focus_: function() {
       // Find element with `autofocus` attribute, or fall back to the first form/tabindex control.
       var target = this.dialog_.querySelector('[autofocus]:not([disabled])');
+      if (!target && this.dialog_.tabIndex >= 0) {
+        target = this.dialog_;
+      }
       if (!target) {
         // Note that this is 'any focusable area'. This list is probably not exhaustive, but the
         // alternative involves stepping through and trying to focus everything.
@@ -8222,12 +8343,15 @@ module.exports = DataModel;
     /**
      * Sets the zIndex for the backdrop and dialog.
      *
-     * @param {number} backdropZ
      * @param {number} dialogZ
+     * @param {number} backdropZ
      */
-    updateZIndex: function(backdropZ, dialogZ) {
-      this.backdrop_.style.zIndex = backdropZ;
+    updateZIndex: function(dialogZ, backdropZ) {
+      if (dialogZ < backdropZ) {
+        throw new Error('dialogZ should never be < backdropZ');
+      }
       this.dialog_.style.zIndex = dialogZ;
+      this.backdrop_.style.zIndex = backdropZ;
     },
 
     /**
@@ -8253,27 +8377,29 @@ module.exports = DataModel;
       if (!dialogPolyfill.dm.pushDialog(this)) {
         throw new Error('Failed to execute \'showModal\' on dialog: There are too many open modal dialogs.');
       }
-      this.show();
+
+      if (createsStackingContext(this.dialog_.parentElement)) {
+        console.warn('A dialog is being shown inside a stacking context. ' +
+            'This may cause it to be unusable. For more information, see this link: ' +
+            'https://github.com/GoogleChrome/dialog-polyfill/#stacking-context');
+      }
+
+      this.setOpen(true);
       this.openAsModal_ = true;
 
       // Optionally center vertically, relative to the current viewport.
       if (dialogPolyfill.needsCentering(this.dialog_)) {
-        console.info('repositioning what');
         dialogPolyfill.reposition(this.dialog_);
         this.replacedStyleTop_ = true;
       } else {
-        console.info('NOT repositioning');
         this.replacedStyleTop_ = false;
       }
 
       // Insert backdrop.
-      this.backdrop_.addEventListener('click', this.backdropClick_);
-      this.dialog_.parentNode.insertBefore(this.backdrop_,
-          this.dialog_.nextSibling);
+      this.dialog_.parentNode.insertBefore(this.backdrop_, this.dialog_.nextSibling);
 
-      this.dialog_.addEventListener('DOMNodeRemoved', function(ev) {
-        console.info('dialog itself removed', ev);
-      });
+      // Focus on whatever inside the dialog.
+      this.focus_();
     },
 
     /**
@@ -8332,7 +8458,7 @@ module.exports = DataModel;
         }
         var cssTop = rule.style.getPropertyValue('top');
         var cssBottom = rule.style.getPropertyValue('bottom');
-        if ((cssTop && cssTop != 'auto') || (cssBottom && cssBottom != 'auto')) {
+        if ((cssTop && cssTop !== 'auto') || (cssBottom && cssBottom !== 'auto')) {
           return true;
         }
       }
@@ -8342,7 +8468,7 @@ module.exports = DataModel;
 
   dialogPolyfill.needsCentering = function(dialog) {
     var computedStyle = window.getComputedStyle(dialog);
-    if (computedStyle.position != 'absolute') {
+    if (computedStyle.position !== 'absolute') {
       return false;
     }
 
@@ -8350,9 +8476,10 @@ module.exports = DataModel;
     // WebKit/Blink, checking computedStyle.top == 'auto' is sufficient, but
     // Firefox returns the used value. So we do this crazy thing instead: check
     // the inline style and then go through CSS rules.
-    if ((dialog.style.top != 'auto' && dialog.style.top != '') ||
-        (dialog.style.bottom != 'auto' && dialog.style.bottom != ''))
+    if ((dialog.style.top !== 'auto' && dialog.style.top !== '') ||
+        (dialog.style.bottom !== 'auto' && dialog.style.bottom !== '')) {
       return false;
+    }
     return !dialogPolyfill.isInlinePositionSetByStylesheet(dialog);
   };
 
@@ -8360,11 +8487,11 @@ module.exports = DataModel;
    * @param {!Element} element to force upgrade
    */
   dialogPolyfill.forceRegisterDialog = function(element) {
-    if (element.showModal) {
+    if (window.HTMLDialogElement || element.showModal) {
       console.warn('This browser already supports <dialog>, the polyfill ' +
           'may not work correctly', element);
     }
-    if (element.nodeName.toUpperCase() != 'DIALOG') {
+    if (element.localName !== 'dialog') {
       throw new Error('Failed to register dialog: The element is not a dialog.');
     }
     new dialogPolyfillInfo(/** @type {!HTMLDialogElement} */ (element));
@@ -8386,6 +8513,8 @@ module.exports = DataModel;
     /** @type {!Array<!dialogPolyfillInfo>} */
     this.pendingDialogStack = [];
 
+    var checkDOM = this.checkDOM_.bind(this);
+
     // The overlay is used to simulate how a modal dialog blocks the document.
     // The blocking dialog is positioned on top of the overlay, and the rest of
     // the dialogs on the pending dialog stack are positioned below it. In the
@@ -8394,26 +8523,35 @@ module.exports = DataModel;
     this.overlay = document.createElement('div');
     this.overlay.className = '_dialog_overlay';
     this.overlay.addEventListener('click', function(e) {
+      this.forwardTab_ = undefined;
       e.stopPropagation();
-    });
+      checkDOM([]);  // sanity-check DOM
+    }.bind(this));
 
     this.handleKey_ = this.handleKey_.bind(this);
     this.handleFocus_ = this.handleFocus_.bind(this);
-    this.handleRemove_ = this.handleRemove_.bind(this);
 
     this.zIndexLow_ = 100000;
     this.zIndexHigh_ = 100000 + 150;
-  };
 
-  /**
-   * @return {Element} the top HTML dialog element, if any
-   */
-  dialogPolyfill.DialogManager.prototype.topDialogElement = function() {
-    if (this.pendingDialogStack.length) {
-      var t = this.pendingDialogStack[this.pendingDialogStack.length - 1];
-      return t.dialog;
+    this.forwardTab_ = undefined;
+
+    if ('MutationObserver' in window) {
+      this.mo_ = new MutationObserver(function(records) {
+        var removed = [];
+        records.forEach(function(rec) {
+          for (var i = 0, c; c = rec.removedNodes[i]; ++i) {
+            if (!(c instanceof Element)) {
+              continue;
+            } else if (c.localName === 'dialog') {
+              removed.push(c);
+            }
+            removed = removed.concat(c.querySelectorAll('dialog'));
+          }
+        });
+        removed.length && checkDOM(removed);
+      });
     }
-    return null;
   };
 
   /**
@@ -8421,10 +8559,9 @@ module.exports = DataModel;
    * handlers.
    */
   dialogPolyfill.DialogManager.prototype.blockDocument = function() {
-    document.body.appendChild(this.overlay);
-    document.body.addEventListener('focus', this.handleFocus_, true);
+    document.documentElement.addEventListener('focus', this.handleFocus_, true);
     document.addEventListener('keydown', this.handleKey_);
-    document.addEventListener('DOMNodeRemoved', this.handleRemove_);
+    this.mo_ && this.mo_.observe(document, {childList: true, subtree: true});
   };
 
   /**
@@ -8432,65 +8569,109 @@ module.exports = DataModel;
    * dialogs are visible.
    */
   dialogPolyfill.DialogManager.prototype.unblockDocument = function() {
-    document.body.removeChild(this.overlay);
-    document.body.removeEventListener('focus', this.handleFocus_, true);
+    document.documentElement.removeEventListener('focus', this.handleFocus_, true);
     document.removeEventListener('keydown', this.handleKey_);
-    document.removeEventListener('DOMNodeRemoved', this.handleRemove_);
+    this.mo_ && this.mo_.disconnect();
   };
 
+  /**
+   * Updates the stacking of all known dialogs.
+   */
   dialogPolyfill.DialogManager.prototype.updateStacking = function() {
-    var zIndex = this.zIndexLow_;
+    var zIndex = this.zIndexHigh_;
 
-    for (var i = 0; i < this.pendingDialogStack.length; i++) {
-      if (i == this.pendingDialogStack.length - 1) {
-        this.overlay.style.zIndex = zIndex++;
+    for (var i = 0, dpi; dpi = this.pendingDialogStack[i]; ++i) {
+      dpi.updateZIndex(--zIndex, --zIndex);
+      if (i === 0) {
+        this.overlay.style.zIndex = --zIndex;
       }
-      this.pendingDialogStack[i].updateZIndex(zIndex++, zIndex++);
     }
+
+    // Make the overlay a sibling of the dialog itself.
+    var last = this.pendingDialogStack[0];
+    if (last) {
+      var p = last.dialog.parentNode || document.body;
+      p.appendChild(this.overlay);
+    } else if (this.overlay.parentNode) {
+      this.overlay.parentNode.removeChild(this.overlay);
+    }
+  };
+
+  /**
+   * @param {Element} candidate to check if contained or is the top-most modal dialog
+   * @return {boolean} whether candidate is contained in top dialog
+   */
+  dialogPolyfill.DialogManager.prototype.containedByTopDialog_ = function(candidate) {
+    while (candidate = findNearestDialog(candidate)) {
+      for (var i = 0, dpi; dpi = this.pendingDialogStack[i]; ++i) {
+        if (dpi.dialog === candidate) {
+          return i === 0;  // only valid if top-most
+        }
+      }
+      candidate = candidate.parentElement;
+    }
+    return false;
   };
 
   dialogPolyfill.DialogManager.prototype.handleFocus_ = function(event) {
-    var candidate = findNearestDialog(/** @type {Element} */ (event.target));
-    if (candidate != this.topDialogElement()) {
-      event.preventDefault();
-      event.stopPropagation();
-      safeBlur(/** @type {Element} */ (event.target));
-      // TODO: Focus on the browser chrome (aka document) or the dialog itself
-      // depending on the tab direction.
-      return false;
+    if (this.containedByTopDialog_(event.target)) { return; }
+
+    event.preventDefault();
+    event.stopPropagation();
+    safeBlur(/** @type {Element} */ (event.target));
+
+    if (this.forwardTab_ === undefined) { return; }  // move focus only from a tab key
+
+    var dpi = this.pendingDialogStack[0];
+    var dialog = dpi.dialog;
+    var position = dialog.compareDocumentPosition(event.target);
+    if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+      if (this.forwardTab_) {  // forward
+        dpi.focus_();
+      } else {  // backwards
+        document.documentElement.focus();
+      }
+    } else {
+      // TODO: Focus after the dialog, is ignored.
     }
+
+    return false;
   };
 
   dialogPolyfill.DialogManager.prototype.handleKey_ = function(event) {
-    if (event.keyCode == 27) {
+    this.forwardTab_ = undefined;
+    if (event.keyCode === 27) {
       event.preventDefault();
       event.stopPropagation();
       var cancelEvent = new supportCustomEvent('cancel', {
         bubbles: false,
         cancelable: true
       });
-      var dialog = this.topDialogElement();
-      if (dialog.dispatchEvent(cancelEvent)) {
-        dialog.close();
+      var dpi = this.pendingDialogStack[0];
+      if (dpi && dpi.dialog.dispatchEvent(cancelEvent)) {
+        dpi.dialog.close();
       }
+    } else if (event.keyCode === 9) {
+      this.forwardTab_ = !event.shiftKey;
     }
   };
 
-  dialogPolyfill.DialogManager.prototype.handleRemove_ = function(event) {
-    if (event.target.nodeName.toUpperCase() != 'DIALOG') { return; }
-
-    var dialog = /** @type {HTMLDialogElement} */ (event.target);
-    if (!dialog.open) { return; }
-
-    console.info('dialog is removed', event);
-
-    // Find a dialogPolyfillInfo which matches the removed <dialog>.
-    this.pendingDialogStack.some(function(dpi) {
-      if (dpi.dialog == dialog) {
-        // This call will clear the dialogPolyfillInfo on this DialogManager
-        // as a side effect.
+  /**
+   * Finds and downgrades any known modal dialogs that are no longer displayed. Dialogs that are
+   * removed and immediately readded don't stay modal, they become normal.
+   *
+   * @param {!Array<!HTMLDialogElement>} removed that have definitely been removed
+   */
+  dialogPolyfill.DialogManager.prototype.checkDOM_ = function(removed) {
+    // This operates on a clone because it may cause it to change. Each change also calls
+    // updateStacking, which only actually needs to happen once. But who removes many modal dialogs
+    // at a time?!
+    var clone = this.pendingDialogStack.slice();
+    clone.forEach(function(dpi) {
+      if (removed.indexOf(dpi.dialog) !== -1) {
+        dpi.downgradeModal();
+      } else {
         dpi.maybeHideModal();
-        return true;
       }
     });
   };
@@ -8504,8 +8685,7 @@ module.exports = DataModel;
     if (this.pendingDialogStack.length >= allowed) {
       return false;
     }
-    this.pendingDialogStack.push(dpi);
-    if (this.pendingDialogStack.length == 1) {
+    if (this.pendingDialogStack.unshift(dpi) === 1) {
       this.blockDocument();
     }
     this.updateStacking();
@@ -8517,43 +8697,117 @@ module.exports = DataModel;
    */
   dialogPolyfill.DialogManager.prototype.removeDialog = function(dpi) {
     var index = this.pendingDialogStack.indexOf(dpi);
-    if (index == -1) { return; }
+    if (index === -1) { return; }
 
     this.pendingDialogStack.splice(index, 1);
-    this.updateStacking();
-    if (this.pendingDialogStack.length == 0) {
+    if (this.pendingDialogStack.length === 0) {
       this.unblockDocument();
     }
+    this.updateStacking();
   };
 
   dialogPolyfill.dm = new dialogPolyfill.DialogManager();
+  dialogPolyfill.formSubmitter = null;
+  dialogPolyfill.useValue = null;
 
   /**
-   * Global form 'dialog' method handler. Closes a dialog correctly on submit
-   * and possibly sets its return value.
+   * Installs global handlers, such as click listers and native method overrides. These are needed
+   * even if a no dialog is registered, as they deal with <form method="dialog">.
    */
-  document.addEventListener('submit', function(ev) {
-    var target = ev.target;
-    if (!target || !target.hasAttribute('method')) { return; }
-    if (target.getAttribute('method').toLowerCase() != 'dialog') { return; }
-    ev.preventDefault();
+  if (window.HTMLDialogElement === undefined) {
 
-    var dialog = findNearestDialog(/** @type {Element} */ (ev.target));
-    if (!dialog) { return; }
-
-    // FIXME: The original event doesn't contain the element used to submit the
-    // form (if any). Look in some possible places.
-    var returnValue;
-    var cands = [document.activeElement, ev.explicitOriginalTarget];
-    var els = ['BUTTON', 'INPUT'];
-    cands.some(function(cand) {
-      if (cand && cand.form == ev.target && els.indexOf(cand.nodeName.toUpperCase()) != -1) {
-        returnValue = cand.value;
-        return true;
+    /**
+     * If HTMLFormElement translates method="DIALOG" into 'get', then replace the descriptor with
+     * one that returns the correct value.
+     */
+    var testForm = document.createElement('form');
+    testForm.setAttribute('method', 'dialog');
+    if (testForm.method !== 'dialog') {
+      var methodDescriptor = Object.getOwnPropertyDescriptor(HTMLFormElement.prototype, 'method');
+      if (methodDescriptor) {
+        // nb. Some older iOS and older PhantomJS fail to return the descriptor. Don't do anything
+        // and don't bother to update the element.
+        var realGet = methodDescriptor.get;
+        methodDescriptor.get = function() {
+          if (isFormMethodDialog(this)) {
+            return 'dialog';
+          }
+          return realGet.call(this);
+        };
+        var realSet = methodDescriptor.set;
+        methodDescriptor.set = function(v) {
+          if (typeof v === 'string' && v.toLowerCase() === 'dialog') {
+            return this.setAttribute('method', v);
+          }
+          return realSet.call(this, v);
+        };
+        Object.defineProperty(HTMLFormElement.prototype, 'method', methodDescriptor);
       }
-    });
-    dialog.close(returnValue);
-  }, true);
+    }
+
+    /**
+     * Global 'click' handler, to capture the <input type="submit"> or <button> element which has
+     * submitted a <form method="dialog">. Needed as Safari and others don't report this inside
+     * document.activeElement.
+     */
+    document.addEventListener('click', function(ev) {
+      dialogPolyfill.formSubmitter = null;
+      dialogPolyfill.useValue = null;
+      if (ev.defaultPrevented) { return; }  // e.g. a submit which prevents default submission
+
+      var target = /** @type {Element} */ (ev.target);
+      if (!target || !isFormMethodDialog(target.form)) { return; }
+
+      var valid = (target.type === 'submit' && ['button', 'input'].indexOf(target.localName) > -1);
+      if (!valid) {
+        if (!(target.localName === 'input' && target.type === 'image')) { return; }
+        // this is a <input type="image">, which can submit forms
+        dialogPolyfill.useValue = ev.offsetX + ',' + ev.offsetY;
+      }
+
+      var dialog = findNearestDialog(target);
+      if (!dialog) { return; }
+
+      dialogPolyfill.formSubmitter = target;
+    }, false);
+
+    /**
+     * Replace the native HTMLFormElement.submit() method, as it won't fire the
+     * submit event and give us a chance to respond.
+     */
+    var nativeFormSubmit = HTMLFormElement.prototype.submit;
+    var replacementFormSubmit = function () {
+      if (!isFormMethodDialog(this)) {
+        return nativeFormSubmit.call(this);
+      }
+      var dialog = findNearestDialog(this);
+      dialog && dialog.close();
+    };
+    HTMLFormElement.prototype.submit = replacementFormSubmit;
+
+    /**
+     * Global form 'dialog' method handler. Closes a dialog correctly on submit
+     * and possibly sets its return value.
+     */
+    document.addEventListener('submit', function(ev) {
+      var form = /** @type {HTMLFormElement} */ (ev.target);
+      if (!isFormMethodDialog(form)) { return; }
+      ev.preventDefault();
+
+      var dialog = findNearestDialog(form);
+      if (!dialog) { return; }
+
+      // Forms can only be submitted via .submit() or a click (?), but anyway: sanity-check that
+      // the submitter is correct before using its value as .returnValue.
+      var s = dialogPolyfill.formSubmitter;
+      if (s && s.form === form) {
+        dialog.close(dialogPolyfill.useValue || s.value);
+      } else {
+        dialog.close();
+      }
+      dialogPolyfill.formSubmitter = null;
+    }, true);
+  }
 
   dialogPolyfill['forceRegisterDialog'] = dialogPolyfill.forceRegisterDialog;
   dialogPolyfill['registerDialog'] = dialogPolyfill.registerDialog;
@@ -8875,6 +9129,31 @@ function isUndefined(arg) {
 }
 
 },{}],24:[function(require,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+},{}],25:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -9045,6 +9324,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -9056,7 +9339,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
  * Root reference for iframes.
  */
@@ -10034,7 +10317,7 @@ request.put = function(url, data, fn){
   return req;
 };
 
-},{"./is-object":26,"./request":28,"./request-base":27,"emitter":19}],26:[function(require,module,exports){
+},{"./is-object":27,"./request":29,"./request-base":28,"emitter":19}],27:[function(require,module,exports){
 /**
  * Check if `obj` is an object.
  *
@@ -10049,7 +10332,7 @@ function isObject(obj) {
 
 module.exports = isObject;
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 /**
  * Module of mixed-in functions shared between node and client code
  */
@@ -10423,7 +10706,7 @@ exports.send = function(data){
   return this;
 };
 
-},{"./is-object":26}],28:[function(require,module,exports){
+},{"./is-object":27}],29:[function(require,module,exports){
 // The node and browser modules expose versions of this with the
 // appropriate constructor function bound as first argument
 /**
@@ -10457,39 +10740,93 @@ function request(RequestConstructor, method, url) {
 
 module.exports = request;
 
-},{}],29:[function(require,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
 },{}],30:[function(require,module,exports){
+(function (setImmediate,clearImmediate){
+var nextTick = require('process/browser.js').nextTick;
+var apply = Function.prototype.apply;
+var slice = Array.prototype.slice;
+var immediateIds = {};
+var nextImmediateId = 0;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) { timeout.close(); };
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(window, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// That's not how node.js implements it but the exposed api is the same.
+exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
+  var id = nextImmediateId++;
+  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
+
+  immediateIds[id] = true;
+
+  nextTick(function onNextTick() {
+    if (immediateIds[id]) {
+      // fn.call() is faster so we optimize for the common use-case
+      // @see http://jsperf.com/call-apply-segu
+      if (args) {
+        fn.apply(null, args);
+      } else {
+        fn.call(null);
+      }
+      // Prevent ids from leaking
+      exports.clearImmediate(id);
+    }
+  });
+
+  return id;
+};
+
+exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
+  delete immediateIds[id];
+};
+}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
+},{"process/browser.js":25,"timers":30}],31:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -11079,5 +11416,5 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":30,"_process":24,"inherits":29}]},{},[11])(11)
+},{"./support/isBuffer":31,"_process":25,"inherits":24}]},{},[11])(11)
 });

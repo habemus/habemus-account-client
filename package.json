@@ -1,6 +1,6 @@
 {
-  "name": "h-account-client",
-  "version": "2.0.0-beta.3",
+  "name": "habemus-account-client",
+  "version": "3.0.0-beta",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.6",
-    "cache-promise-fn": "0.0.0",
-    "data-obj": "0.0.1",
+    "cache-promise-fn": "^1.0.0",
+    "data-obj": "^1.0.0",
     "dialog-polyfill": "^0.4.4",
     "superagent": "^2.3.0"
   },
